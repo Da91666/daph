@@ -1,5 +1,7 @@
 # Dasea Daph
 
+<img src="docs/zh/images/Daph彩图700.png" alt="Daph Logo" width="200px" align="right" />
+
 <!-- TOC -->
   * [概述](#概述)
   * [功能](#功能)

@@ -1,0 +1,39 @@
+{
+  "options": {
+    "daph.home": "DAPH_HOME路径",
+    "daph.log.level": "info"
+  },
+  "nodes": [
+    {
+      "flag": "Flink117.sql.general.connector.GaMultipleInput",
+      "config": {
+        "catalogName": "mysql_catalog",
+        "databaseName": "daph_db1",
+        "enableCatalogCDC": true,
+        "catalogExtraConfig": {
+          "daph.tableNames": "table_in",
+          "scan.startup.mode": "initial"
+        }
+      },
+      "outLines": [
+        "in-line"
+      ]
+    },
+    {
+      "flag": "Flink117.sql.general.connector.GaMultipleOutput",
+      "config": {
+        "catalogName": "mysql_catalog",
+        "databaseName": "daph_db2",
+        "insertConfigs": [
+          {
+            "sql": "insert into mysql_catalog.daph_db2.table_in select * from default_catalog.default_database.table_in",
+            "primaryKeys": "id"
+          }
+        ]
+      },
+      "inLines": [
+        "in-line"
+      ]
+    }
+  ]
+}

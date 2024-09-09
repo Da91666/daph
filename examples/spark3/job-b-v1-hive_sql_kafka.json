@@ -1,0 +1,46 @@
+{
+  "options": {
+    "daph.home": "DAPH_HOME路径",
+    "daph.log-level": "info"
+  },
+  "nodes": [
+    {
+      "flag": "Spark3.dataframe.batch.connector.CommonInput",
+      "config": {
+        "isCatalogTable": "true",
+        "tableName": "dw.dspark_mysql_user"
+      },
+      "outLines": [
+        "in-line1"
+      ]
+    },
+    {
+      "flag": "Spark3.dataframe.general.transformer.Sql",
+      "config": {
+        "flag": "Spark3.dataframe.general.transformer.Sql",
+        "sql": "select CAST(id as STRING) as key,concat_ws('|',id,username,updatetime,createtime,price,inventory) as value from t"
+      },
+      "inLines": [
+        "in-line1"
+      ],
+      "outLines": [
+        "sql-tr-line"
+      ]
+    },
+    {
+      "flag": "Spark3.dataframe.batch.connector.CommonOutput",
+      "config": {
+        "cfg": {
+          "checkpointLocation": "/srv/data_universe/cluster_worker/kafka_streaming/dspark_hive_user",
+          "kafka.bootstrap.servers": "ddp1:9092,ddp2:9092,ddp3:9092",
+          "topic": "dspark_hive_user"
+        },
+        "format": "kafka",
+        "method": "start"
+      },
+      "inLines": [
+        "sql-tr-line"
+      ]
+    }
+  ]
+}

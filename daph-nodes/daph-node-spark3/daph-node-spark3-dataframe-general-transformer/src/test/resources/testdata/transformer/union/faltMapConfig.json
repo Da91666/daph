@@ -1,0 +1,24 @@
+{
+  "flag": "Spark3.dataframe.general.transformer.flatMap",
+  "name": "abc",
+  "config": {
+    "resultColumns": ["id","name"],
+    "expoldeConfig": [
+      {
+        "colName": "ability",
+        "splitKey": ",",
+        "newName": "gongfu"
+      }
+    ]
+  },
+  "inLines": [
+    "ds1"
+  ],
+  "outLines": [
+    "out1"
+  ],
+  "extraOptions": {
+    "beforeSQL": "select * from t limit 3",
+    "afterSQL": "select * from t limit 3"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "options": {
+    "daph.home": "DAPH_HOME路径",
+    "daph.log.level": "DEBUG"
+  },
+  "nodes": [
+    {
+      "flag": "Flink117.sql.general.connector.GaMultipleInput",
+      "config": {
+        "catalogName": "pg_catalog",
+        "databaseName": "bigdata",
+        "catalogExtraConfig": {
+          "daph.tableNames": "dp_spark35",
+          "daph.schemaName": "public",
+          "daph.databaseName": "bigdata"
+        }
+      },
+      "outLines": [
+        "in-line"
+      ]
+    },
+    {
+      "flag": "Flink117.sql.general.connector.GaMultipleOutput",
+      "config": {
+        "catalogName": "hive_catalog",
+        "databaseName": "daph_hive",
+        "catalogExtraConfig": {
+          "daph.dbType": "hive",
+          "daph.tableNamePrefix": "z_pg_hive_",
+          "daph.flink.saveMode": "append",
+          "daph.flink.dialect": "hive",
+          "daph.hive.format": "orc",
+          "bucketing_version": "2"
+        },
+        "insertConfigs": [
+          {
+            "sql": "insert into hive_catalog.daph_hive.z_pg_hive_dp_spark35 select * from pg_catalog.bigdata.`public.dp_spark35`"
+          }
+        ]
+      },
+      "inLines": [
+        "in-line"
+      ]
+    }
+  ]
+}

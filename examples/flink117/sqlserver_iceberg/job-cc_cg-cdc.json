@@ -1,0 +1,55 @@
+{
+  "options": {
+    "daph.home": "DAPH_HOME路径",
+    "daph.log.level": "info"
+  },
+  "nodes": [
+    {
+      "flag": "Flink117.sql.general.connector.GaMultipleInput",
+      "config": {
+        "createConfigs": [
+          {
+            "daph.dbType": "sqlserver",
+            "daph.url": "jdbc:sqlserver://192.168.6.66:1433;databaseName=bidata",
+            "daph.databaseName": "bidata",
+            "daph.schemaName": "dbo",
+            "daph.tableNames": "user_daph",
+            "connector": "sqlserver-cdc",
+            "hostname": "192.168.6.66",
+            "port": "1433",
+            "username": "sa",
+            "password": "daph",
+            "database-name": "bidata",
+            "scan.incremental.snapshot.enabled": "true",
+            "scan.startup.mode": "initial"
+          }
+        ]
+      },
+      "outLines": [
+        "in-line"
+      ]
+    },
+    {
+      "flag": "Flink117.sql.general.connector.GaMultipleOutput",
+      "config": {
+        "catalogName": "iceberg_catalog",
+        "databaseName": "daph_iceberg",
+        "catalogExtraConfig": {
+          "daph.dbType": "iceberg",
+          "daph.tableNamePrefix": "sqlserver_cdc_",
+          "daph.flink.saveMode": "append",
+          "bucketing_version": "2"
+        },
+        "insertConfigs": [
+          {
+            "sql": "insert into iceberg_catalog.daph_iceberg.sqlserver_cdc_table_in select * from default_catalog.default_database.`dbo.user_daph`",
+            "primaryKeys": "id"
+          }
+        ]
+      },
+      "inLines": [
+        "in-line"
+      ]
+    }
+  ]
+}

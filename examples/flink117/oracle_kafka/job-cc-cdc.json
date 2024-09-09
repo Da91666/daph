@@ -1,0 +1,59 @@
+{
+  "options": {
+    "daph.home": "DAPH_HOME路径",
+    "daph.log.level": "info"
+  },
+  "nodes": [
+    {
+      "flag": "Flink117.sql.general.connector.GaMultipleInput",
+      "config": {
+        "createConfigs": [
+          {
+            "daph.dbType": "oracle",
+            "daph.url": "jdbc:oracle:thin:@//192.168.6.66:1521/helowin",
+            "daph.databaseName": "HELOWIN",
+            "daph.schemaName": "BIGDATA",
+            "daph.tableNames": "DAPH_CDC_1",
+            "connector": "oracle-cdc",
+            "hostname": "192.168.6.66",
+            "port": "1521",
+            "username": "family",
+            "password": "daph",
+            "database-name": "HELOWIN",
+            "schema-name": "BIGDATA",
+            "debezium.log.mining.strategy": "online_catalog",
+            "debezium.log.mining.continuous.mine": "true",
+            "scan.incremental.snapshot.enabled": "true"
+          }
+        ]
+      },
+      "outLines": [
+        "in-line"
+      ]
+    },
+    {
+      "flag": "Flink117.sql.general.connector.GaMultipleOutput",
+      "config": {
+        "createConfigs": [
+          {
+            "daph.dbType": "kafka",
+            "daph.tableNames": "oracle_cdc_topic",
+            "connector": "upsert-kafka",
+            "properties.bootstrap.servers": "192.168.6.66:9092",
+            "key.format": "json",
+            "value.format": "json"
+          }
+        ],
+        "insertConfigs": [
+          {
+            "sql": "insert into oracle_cdc_topic select * from `BIGDATA.DAPH_CDC_1`",
+            "primaryKeys": "ID"
+          }
+        ]
+      },
+      "inLines": [
+        "in-line"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "options": {
+    "daph.home": "DAPH_HOME路径",
+    "daph.log.level": "debug"
+  },
+  "nodes": [
+    {
+      "flag": "Flink117.sql.general.connector.GaMultipleInput",
+      "config": {
+        "createConfigs": [
+          {
+            "daph.url": "jdbc:oracle:thin:@//192.168.3.202:1521/helowin",
+            "daph.tableNames": "ZRZ_CDC_1",
+            "connector": "oracle-cdc",
+            "hostname": "192.168.3.202",
+            "port": "1521",
+            "username": "family",
+            "password": "zyhcdc",
+            "database-name": "HELOWIN",
+            "schema-name": "BIGDATA",
+            "debezium.log.mining.strategy": "online_catalog",
+            "debezium.log.mining.continuous.mine": "true",
+            "scan.incremental.snapshot.enabled": "true"
+          }
+        ]
+      },
+      "outLines": [
+        "in-line"
+      ]
+    },
+    {
+      "flag": "Flink117.sql.general.connector.GaMultipleOutput",
+      "config": {
+        "createConfigs": [
+          {
+            "daph.tableNames": "s_oracle_cdc_3",
+            "daph.flink.autoSingleInsertSql": "true",
+            "daph.flink.inTableName": "`BIGDATA.ZRZ_CDC_1`",
+            "daph.starrocks.castType": "BIGINT",
+            "daph.starrocks.keyType": "UNIQUE",
+            "daph.starrocks.distPart": "DISTRIBUTED BY HASH(FF)",
+            "connector": "starrocks",
+            "jdbc-url": "jdbc:mysql://192.168.3.204:9030",
+            "load-url": "192.168.3.204:8030",
+            "database-name": "daph",
+            "username": "root",
+            "password": ""
+          }
+        ]
+      },
+      "inLines": [
+        "in-line"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "options": {
+    "daph.home": "DAPH_HOME路径",
+    "daph.log-level": "info"
+  },
+  "nodes": [
+    {
+      "name": "input",
+      "flag": "Spark3.dataframe.batch.connector.CommonInput",
+      "config": {
+        "cfg": {
+          "dbtable": "user",
+          "driver": "com.mysql.cj.jdbc.Driver",
+          "password": "root",
+          "url": "jdbc:mysql://192.168.3.202:3306/bigdata?characterEncoding=UTF-8&useUnicode=true&useSSL=false&tinyInt1isBit=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai",
+          "user": "root"
+        },
+        "format": "jdbc"
+      },
+      "outLines": [
+        "in-line1"
+      ]
+    },
+    {
+      "name": "filter",
+      "flag": "Spark3.dataframe.general.transformer.Filter",
+      "config": {
+        "conditions": [
+          {
+            "expression": "id=10",
+            "isNot": "false"
+          }
+        ]
+      },
+      "inLines": [
+        "in-line1"
+      ],
+      "outLines": [
+        "sql-tr-line-2"
+      ]
+    },
+    {
+      "name": "sql",
+      "flag": "Spark3.dataframe.general.transformer.Sql",
+      "config": {
+        "sql": "select * from t"
+      },
+      "inLines": [
+        "sql-tr-line-2"
+      ],
+      "outLines": [
+        "sql-tr-line-3"
+      ]
+    },
+    {
+      "name": "map",
+      "flag": "Spark3.dataframe.general.transformer.Map",
+      "config": {
+        "expressions": [
+          "id",
+          "username as mingren",
+          "price * 100  as up_price"
+        ]
+      },
+      "inLines": [
+        "sql-tr-line-3"
+      ],
+      "outLines": [
+        "sql-tr-line-4"
+      ]
+    },
+    {
+      "name": "output",
+      "flag": "Spark3.dataframe.batch.connector.CommonOutput",
+      "config": {
+        "format": "hive",
+        "saveMode": "overwrite",
+        "method": "saveAsTable",
+        "name": "dw.dspark_mysql_user_transformer"
+      },
+      "inLines": [
+        "sql-tr-line-4"
+      ]
+    }
+  ]
+}

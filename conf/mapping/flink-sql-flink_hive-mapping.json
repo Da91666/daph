@@ -1,0 +1,131 @@
+[
+  {
+    "sourceTypes": [
+      "CHAR",
+      "VARCHAR"
+    ],
+    "targetTypes": [
+      "VARCHAR(65535)"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "STRING"
+    ],
+    "targetTypes": [
+      "STRING"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "TINYINT"
+    ],
+    "targetTypes": [
+      "TINYINT"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "SMALLINT"
+    ],
+    "targetTypes": [
+      "SMALLINT"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "INT"
+    ],
+    "targetTypes": [
+      "INT"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "BIGINT"
+    ],
+    "targetTypes": [
+      "BIGINT"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "FLOAT"
+    ],
+    "targetTypes": [
+      "FLOAT"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "DOUBLE"
+    ],
+    "targetTypes": [
+      "DOUBLE"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "DECIMAL"
+    ],
+    "targetTypes": [
+      "DECIMAL(38,38)"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "BOOLEAN"
+    ],
+    "targetTypes": [
+      "BOOLEAN"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "DATE"
+    ],
+    "targetTypes": [
+      "DATE"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "TIMESTAMP"
+    ],
+    "targetTypes": [
+      "TIMESTAMP"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "BYTES"
+    ],
+    "targetTypes": [
+      "BINARY"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "ARRAY"
+    ],
+    "targetTypes": [
+      "LIST"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "MAP"
+    ],
+    "targetTypes": [
+      "MAP"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "ROW"
+    ],
+    "targetTypes": [
+      "STRUCT"
+    ]
+  }
+]

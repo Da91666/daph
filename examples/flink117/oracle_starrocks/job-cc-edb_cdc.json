@@ -1,0 +1,52 @@
+{
+  "options": {
+    "daph.home": "DAPH_HOME路径",
+    "daph.log.level": "info"
+  },
+  "nodes": [
+    {
+      "flag": "Flink117.sql.general.connector.GaMultipleInput",
+      "id": "in1",
+      "config": {
+        "createConfigs": [
+          {
+            "daph.url": "jdbc:oracle:thin:@//192.168.6.66:1521/helowin",
+            "daph.flink.enableEDB": "true",
+            "connector": "oracle-cdc",
+            "hostname": "192.168.6.66",
+            "port": "1521",
+            "username": "family",
+            "password": "daph",
+            "database-name": "HELOWIN",
+            "schema-name": "DAPHDB",
+            "debezium.log.mining.strategy": "online_catalog",
+            "debezium.log.mining.continuous.mine": "true"
+          }
+        ]
+      },
+      "outLines": [
+        "in-line"
+      ]
+    },
+    {
+      "flag": "Flink117.sql.general.connector.GaMultipleOutput",
+      "config": {
+        "createConfigs": [
+          {
+            "daph.flink.enableEDB": "true",
+            "daph.flink.edbInNodeId": "in1",
+            "connector": "starrocks",
+            "jdbc-url": "jdbc:mysql://192.168.3.204:9030",
+            "load-url": "192.168.3.204:8030",
+            "database-name": "daph",
+            "username": "root",
+            "password": ""
+          }
+        ]
+      },
+      "inLines": [
+        "in-line"
+      ]
+    }
+  ]
+}

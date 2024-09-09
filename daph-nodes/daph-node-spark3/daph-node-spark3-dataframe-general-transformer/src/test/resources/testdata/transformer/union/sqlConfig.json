@@ -1,0 +1,15 @@
+{
+  "flag": "Spark3.dataframe.general.transformer.Sql",
+  "name": "abc",
+  "config": {
+    "sql": "select a.s1,a.s2,sum(a.s3),max(a.s4) from a group by a.s1,a.s2"
+  },
+  "inLines": [
+    "ds1"
+  ],
+  "outLines": [
+    "out1"
+  ],
+  "extraOptions": {
+  }
+}

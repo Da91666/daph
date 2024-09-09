@@ -1,0 +1,62 @@
+{
+  "options": {
+    "daph.home": "DAPH_HOME路径",
+    "daph.log.level": "info"
+  },
+  "nodes": [
+    {
+      "flag": "Flink117.sql.general.connector.GaMultipleInput",
+      "config": {
+        "catalogName": "pg_catalog",
+        "enableCatalogCDC": true,
+        "databaseName": "bigdata",
+        "catalogExtraConfig": {
+          "daph.flink.onlyPrimaryTables": "true",
+          "scan.startup.mode": "initial",
+          "daph.tableNames": "dp_spark35",
+          "daph.schemaName": "public",
+          "daph.databaseName": "bigdata",
+          "slot.name": "flink",
+          "decoding.plugin.name": "pgoutput"
+        }
+      },
+      "outLines": [
+        "in-line"
+      ]
+    },
+    {
+      "flag": "Flink117.sql.general.connector.GaMultipleOutput",
+      "config": {
+        "createConfigs": [
+          {
+            "daph.dbType": "doris",
+            "daph.url": "jdbc:mysql://192.168.6.66:9030/bigdata?useSSL=false",
+            "daph.databaseName": "bigdata",
+            "daph.tableNames": "zz_flink_dp_cg_cc_spark35",
+            "daph.flink.saveMode": "append",
+            "daph.doris.engineType": "olap",
+            "daph.doris.labelType": "uuid",
+            "daph.doris.keyType": "UNIQUE",
+            "daph.doris.distType": "HASH",
+            "daph.doris.buckets": "12",
+            "daph.doris.props.replication_num": "1",
+            "connector": "doris",
+            "fenodes": "192.168.6.66:8030",
+            "jdbc-url": "jdbc:mysql://192.168.6.66:9030/bigdata?useSSL=false",
+            "username": "root",
+            "password": ""
+          }
+        ],
+        "insertConfigs": [
+          {
+            "sql": "insert into zz_flink_dp_cg_cc_spark35 select * from `public.dp_spark35`",
+            "primaryKeys": "id"
+          }
+        ]
+      },
+      "inLines": [
+        "in-line"
+      ]
+    }
+  ]
+}

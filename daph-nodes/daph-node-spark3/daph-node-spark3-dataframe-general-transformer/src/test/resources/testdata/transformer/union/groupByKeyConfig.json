@@ -1,0 +1,25 @@
+{
+  "flag": "Spark3.dataframe.general.transformer.groupbykey",
+  "name": "abc",
+  "config": {
+    "keyColumns": [
+      "name"
+    ],
+    "exprs": {
+      "total_price": "sum"
+    },
+    "exprsName": [
+      "name",
+      "`sum(total_price)` as sum"
+    ]
+  },
+  "inLines": [
+    "ds1"
+  ],
+  "outLines": [
+    "out1"
+  ],
+  "extraOptions": {
+
+  }
+}

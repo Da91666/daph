@@ -1,0 +1,20 @@
+[
+  {
+    "flag": "JVM.httpresult.simple.connector.HttpInput",
+    "jarName": "daph-node-jvm-httpresult.jar",
+    "className": "com.dasea.daph.node.jvm.httpresult.simple.connector.HttpInput",
+    "classPrefix": "com.dasea.daph.node.jvm.httpresult"
+  },
+  {
+    "flag": "JVM.httpresult.simple.transformer.HttpTransformer",
+    "jarName": "daph-node-jvm-httpresult.jar",
+    "className": "com.dasea.daph.node.jvm.httpresult.simple.transformer.HttpTransformer",
+    "classPrefix": "com.dasea.daph.node.jvm.httpresult"
+  },
+  {
+    "flag": "JVM.httpresult.simple.connector.HttpOutput",
+    "jarName": "daph-node-jvm-httpresult.jar",
+    "className": "com.dasea.daph.node.jvm.httpresult.simple.connector.HttpOutput",
+    "classPrefix": "com.dasea.daph.node.jvm.httpresult"
+  }
+]

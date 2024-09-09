@@ -1,0 +1,51 @@
+{
+  "options": {
+    "daph.home": "DAPH_HOME路径",
+    "daph.log-level": "info"
+  },
+  "nodes": [
+    {
+      "flag": "Spark3.dataframe.stream.connector.CommonInput",
+      "config": {
+        "cfg": {
+          "group.id": "kafka_consume_group_id_iceberg",
+          "kafka.bootstrap.servers": "ddp1:9092,ddp2:9092,ddp3:9092",
+          "subscribe": "dspark_mysql_user"
+        },
+        "format": "kafka"
+      },
+      "outLines": [
+        "in-line1"
+      ]
+    },
+    {
+      "flag": "Spark3.dataframe.general.transformer.Sql",
+      "config": {
+        "sql": "select split(CAST(value AS STRING),'\\\\|')[0] as id, split(CAST(value AS STRING),'\\\\|')[1]  AS username, split( CAST(value AS STRING),'\\\\|')[2]  AS updatetime,split( CAST(value AS STRING),'\\\\|')[3]  AS createtime,split( CAST(value AS STRING),'\\\\|')[4]  AS price,split( CAST(value AS STRING),'\\\\|')[5]  AS inventory from t"
+      },
+      "inLines": [
+        "in-line1"
+      ],
+      "outLines": [
+        "sql-tr-line"
+      ]
+    },
+    {
+      "flag": "Spark3.dataframe.stream.connector.CommonOutput",
+      "config": {
+        "batch": "true",
+        "batchConfig": {
+          "v2": "true",
+          "v2Config": {
+            "tableName": "hive_catalog.iceberg_db.dspark_kafka_user",
+            "method": "append"
+          },
+          "format": "org.apache.iceberg.spark.source.IcebergSource"
+        }
+      },
+      "inLines": [
+        "sql-tr-line"
+      ]
+    }
+  ]
+}

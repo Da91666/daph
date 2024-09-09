@@ -1,0 +1,34 @@
+{
+  "nodes": [
+    {
+      "flag": "JVM.httpresult.simple.connector.HttpInput",
+      "config": {
+        "url": "https://cn.bing.com/search?q=w"
+      },
+      "outLines": [
+        "in-line"
+      ]
+    },
+    {
+      "flag": "JVM.httpresult.simple.transformer.HttpTransformer",
+      "config": {
+        "url": "https://cn.bing.com/search?q=x"
+      },
+      "inLines": [
+        "in-line"
+      ],
+      "outLines": [
+        "tr-line"
+      ]
+    },
+    {
+      "flag": "JVM.httpresult.simple.connector.HttpOutput",
+      "config": {
+        "url": "https://cn.bing.com/search?q=y"
+      },
+      "inLines": [
+        "tr-line"
+      ]
+    }
+  ]
+}

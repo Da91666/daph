@@ -1,0 +1,129 @@
+[
+  {
+    "sourceTypes": [
+      "VARCHAR",
+      "CHAR",
+      "CHARACTER",
+      "BPCHAR",
+      "CHARACTER VARYING"
+    ],
+    "targetTypes": [
+      "VARCHAR(16383)"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "TEXT"
+    ],
+    "targetTypes": [
+      "STRING"      
+    ]
+  },
+  {
+    "sourceTypes": [
+      "SMALLINT",
+      "INT2",
+      "SMALLSERIAL",
+      "SERIAL2"
+    ],
+    "targetTypes": [
+      "SMALLINT",
+      "INT",
+      "BIGINT",
+      "LARGEINT"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "INTEGER",
+      "INT4",
+      "SERIAL"
+    ],
+    "targetTypes": [
+      "INT",
+      "BIGINT",
+      "LARGEINT"
+    
+    ]
+  },
+  {
+    "sourceTypes": [
+      "BIGINT",
+      "INT8",
+      "BIGSERIAL"
+    ],
+    "targetTypes": [
+      "BIGINT",
+      "LARGEINT"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "REAL",
+      "FLOAT4"
+    ],
+    "targetTypes": [
+      "FLOAT"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "FLOAT8",
+      "DOUBLE PRECISION"
+    ],
+    "targetTypes": [
+      "DOUBLE"     
+    ]
+  },
+  {
+    "sourceTypes": [
+      "DECIMAL",
+      "NUMERIC"
+    ],
+    "targetTypes": [
+      "DECIMALV3(38,38)",
+      "DECIMALV2(27,9)",
+      "DECIMAL(38,38)"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "BOOLEAN"
+    ],
+    "targetTypes": [
+      "BOOLEAN"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "DATE"
+    ],
+    "targetTypes": [
+      "DATEV2",
+      "DATE"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "TIME"
+    ],
+    "targetTypes": [
+      "DATETIME"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "TIMESTAMP"
+    ],
+    "targetTypes": [
+      "DATETIME"
+    ]
+  }, {
+    "sourceTypes": [
+      "STRING"
+    ],
+    "targetTypes": [
+      "STRING"      
+    ]
+  }
+]

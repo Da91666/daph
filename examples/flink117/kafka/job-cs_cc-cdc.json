@@ -1,0 +1,44 @@
+{
+  "options": {
+    "daph.home": "DAPH_HOME路径",
+    "daph.log.level": "debug"
+  },
+  "nodes": [
+    {
+      "flag": "Flink117.sql.general.connector.GaMultipleInput",
+      "config": {
+        "createSqls": [
+          "CREATE TABLE if not exists daph_tmp_mysql10_mysql_test2 (\n  `headers` MAP<STRING,BYTES> METADATA,\n  `id` VARCHAR(100) NOT NULL,\n  `name` VARCHAR(100),\n  `age` INT,\n  `wage` FLOAT,\n  `all_income` BIGINT,\n  `create_time` TIMESTAMP(0),\n  CONSTRAINT `PRIMARY` PRIMARY KEY (`id`) NOT ENFORCED\n) WITH (\n'value.fields-include'='EXCEPT_KEY',\n'connector'='upsert-kafka',\n'value.format'='json',\n'topic'='default_catalog.default_database.mysql10_mysql_test2',\n'key.format'='json',\n'properties.bootstrap.servers'='192.168.6.66:9092'\n)"
+        ]
+      },
+      "outLines": [
+        "in-line"
+      ]
+    },
+    {
+      "flag": "Flink117.sql.general.connector.GaMultipleOutput",
+      "config": {
+        "createConfigs": [
+          {
+            "daph.dbType": "kafka",
+            "daph.tableNames": "mysql15_mysql_test2",
+            "connector": "upsert-kafka",
+            "properties.bootstrap.servers": "192.168.6.66:9092",
+            "key.format": "json",
+            "value.format": "json",
+            "value.fields-include": "EXCEPT_KEY"
+          }
+        ],
+        "insertConfigs": [
+          {
+            "sql": "insert into mysql15_mysql_test2 select headers['key'] as headers, * from daph_tmp_mysql10_mysql_test2",
+            "primaryKeys": "id"
+          }
+        ]
+      },
+      "inLines": [
+        "in-line"
+      ]
+    }
+  ]
+}

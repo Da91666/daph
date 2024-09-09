@@ -1,0 +1,44 @@
+{
+  "options": {
+    "daph.home": "DAPH_HOME路径",
+    "daph.log.level": "debug"
+  },
+  "nodes": [
+    {
+      "flag": "Flink117.sql.general.connector.GaMultipleInput",
+      "id": "in1",
+      "config": {
+        "createConfigs": [
+          {
+            "daph.databaseName": "daph",
+            "daph.flink.enableEDB": "true",
+            "connector": "doris",
+            "fenodes": "192.168.3.202:8030",
+            "jdbc-url": "jdbc:mysql://192.168.3.202:9030/daph?useSSL=false",
+            "username": "root",
+            "password": ""
+          }
+        ]
+      },
+      "outLines": [
+        "in-line"
+      ]
+    },
+    {
+      "flag": "Flink117.sql.general.connector.GaMultipleOutput",
+      "config": {
+        "catalogName": "hive_catalog",
+        "databaseName": "flink_db",
+        "enableCatalogEDB": true,
+        "catalogExtraConfig": {
+          "daph.flink.edbInNodeId": "in1",
+          "daph.flink.dialect": "hive",
+          "daph.hive.format": "TextFile"
+        }
+      },
+      "inLines": [
+        "in-line"
+      ]
+    }
+  ]
+}

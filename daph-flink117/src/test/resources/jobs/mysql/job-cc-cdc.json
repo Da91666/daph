@@ -1,0 +1,58 @@
+{
+  "options": {
+    "daph.home": "DAPH_HOME路径",
+    "daph.log.level": "info"
+  },
+  "nodes": [
+    {
+      "flag": "Flink117.sql.general.connector.GaMultipleInput",
+      "config": {
+        "createConfigs": [
+          {
+            "daph.dbType": "mysql",
+            "daph.url": "jdbc:mysql://192.168.6.66:3306/daph_db",
+            "daph.databaseName": "daph_db",
+            "daph.tableNames": "table_in",
+            "connector": "mysql-cdc",
+            "hostname": "192.168.6.66",
+            "port": "3306",
+            "username": "root",
+            "password": "root",
+            "database-name": "daph_db",
+            "scan.incremental.snapshot.enabled": "true"
+          }
+        ]
+      },
+      "outLines": [
+        "in-line"
+      ]
+    },
+    {
+      "flag": "Flink117.sql.general.connector.GaMultipleOutput",
+      "config": {
+        "createConfigs": [
+          {
+            "daph.dbType": "mysql",
+            "daph.databaseName": "daph_db2",
+            "daph.tableNames": "table_out_1",
+            "daph.url": "jdbc:mysql://192.168.6.66:3306/daph_db2",
+            "daph.flink.saveMode": "append",
+            "connector": "jdbc",
+            "url": "jdbc:mysql://192.168.6.66:3306/daph_db2",
+            "username": "root",
+            "password": "root"
+          }
+        ],
+        "insertConfigs": [
+          {
+            "sql": "insert into table_out_1 select * from table_in",
+            "primaryKeys": "id"
+          }
+        ]
+      },
+      "inLines": [
+        "in-line"
+      ]
+    }
+  ]
+}

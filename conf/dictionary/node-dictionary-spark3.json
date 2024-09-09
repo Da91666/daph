@@ -1,0 +1,91 @@
+[
+  {
+    "flag": "Spark3.dataframe.batch.connector.CommonInput",
+    "alias": ["input", "in", "source", "src"],
+    "jarName": "daph-node-spark3-dataframe-connector-commonio.jar",
+    "className": "com.dasea.daph.node.spark3.dataframe.batch.connector.common.CommonInput",
+    "classPrefix": "com.dasea.daph.node.spark3.dataframe"
+  },
+  {
+    "flag": "Spark3.dataframe.batch.connector.CommonOutput",
+    "alias": ["output", "out", "sink", "sk"],
+    "jarName": "daph-node-spark3-dataframe-connector-commonio.jar",
+    "className": "com.dasea.daph.node.spark3.dataframe.batch.connector.common.CommonOutput",
+    "classPrefix": "com.dasea.daph.node.spark3.dataframe"
+  },
+  {
+    "flag": "Spark3.dataframe.stream.connector.CommonInput",
+    "alias": ["input-stream", "in-stream", "source-stream", "src-stream"],
+    "jarName": "daph-node-spark3-dataframe-connector-commonio.jar",
+    "className": "com.dasea.daph.node.spark3.dataframe.stream.connector.common.CommonInput",
+    "classPrefix": "com.dasea.daph.node.spark3.dataframe"
+  },
+  {
+    "flag": "Spark3.dataframe.stream.connector.CommonOutput",
+    "alias": ["output-stream", "out-stream", "sink-stream", "sk-stream"],
+    "jarName": "daph-node-spark3-dataframe-connector-commonio.jar",
+    "className": "com.dasea.daph.node.spark3.dataframe.stream.connector.common.CommonOutput",
+    "classPrefix": "com.dasea.daph.node.spark3.dataframe"
+  },
+  {
+    "flag": "Spark3.dataframe.batch.connector.ESOutput",
+    "jarName": "daph-node-spark3-dataframe-batch-connector-es.jar",
+    "className": "com.dasea.daph.node.spark3.dataframe.batch.connector.es.ESOutput",
+    "classPrefix": "com.dasea.daph.node.spark3.dataframe.batch.connector.es;org.elasticsearch"
+  },
+  {
+    "flag": "Spark3.dataframe.batch.connector.HiveInput",
+    "jarName": "daph-node-spark3-dataframe-batch-connector-hive.jar",
+    "className": "com.dasea.daph.node.spark3.dataframe.batch.connector.hive.HiveInput"
+  },
+  {
+    "flag": "Spark3.dataframe.batch.connector.HttpInput",
+    "jarName": "daph-node-spark3-dataframe-batch-connector-http.jar",
+    "className": "com.dasea.daph.node.spark3.dataframe.batch.connector.http.HttpInput"
+  },
+  {
+    "flag": "Spark3.dataframe.batch.connector.KPOutput",
+    "jarName": "daph-node-spark3-dataframe--connector-kp.jar",
+    "className": "com.dasea.daph.node.spark3.dataframe.batch.connector.kp.KPOutput",
+    "classPrefix": "com.dasea.daph.node.spark3.dataframe"
+  },
+  {
+    "flag": "Spark3.dataframe.stream.connector.KPOutput",
+    "jarName": "daph-node-spark3-dataframe-connector-kp.jar",
+    "className": "com.dasea.daph.node.spark3.dataframe.stream.connector.kp.KPOutput",
+    "classPrefix": "com.dasea.daph.node.spark3.dataframe"
+  },
+  {
+    "flag": "Spark3.dataframe.general.transformer.Sql",
+    "alias": ["sql"],
+    "jarName": "daph-node-spark3-dataframe-general-transformer.jar",
+    "className": "com.dasea.daph.node.spark3.dataframe.general.transformer.sql.Sql"
+  },
+  {
+    "flag": "Spark3.dataframe.general.transformer.MSql",
+    "jarName": "daph-node-spark3-dataframe-general-transformer.jar",
+    "className": "com.dasea.daph.node.spark3.dataframe.general.transformer.sql.MSql"
+  },
+  {
+    "flag": "Spark3.dataframe.general.transformer.MMSql",
+    "jarName": "daph-node-spark3-dataframe-general-transformer.jar",
+    "className": "com.dasea.daph.node.spark3.dataframe.general.transformer.sql.MMSql"
+  },
+  {
+    "flag": "Spark3.dataframe.general.transformer.Map",
+    "alias": ["map"],
+    "jarName": "daph-node-spark3-dataframe-general-transformer.jar",
+    "className": "com.dasea.daph.node.spark3.dataframe.general.transformer.map.Map"
+  },
+  {
+    "flag": "Spark3.dataframe.general.transformer.Filter",
+    "alias": ["filter"],
+    "jarName": "daph-node-spark3-dataframe-general-transformer.jar",
+    "className": "com.dasea.daph.node.spark3.dataframe.general.transformer.filter.Filter"
+  },
+  {
+    "flag": "Spark3.dataframe.general.transformer.Join",
+    "jarName": "daph-node-spark3-dataframe-general-transformer.jar",
+    "className": "com.dasea.daph.node.spark3.dataframe.general.transformer.join.Join"
+  }
+]

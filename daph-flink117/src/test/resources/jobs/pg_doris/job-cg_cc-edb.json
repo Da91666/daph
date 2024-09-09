@@ -1,0 +1,58 @@
+{
+  "options": {
+    "daph.home": "DAPH_HOME路径",
+    "daph.log.level": "info"
+  },
+  "nodes": [
+    {
+      "flag": "Flink117.sql.general.connector.GaMultipleInput",
+      "id": "in1",
+      "config": {
+        "enableCatalogEDB": true,
+        "catalogName": "pg_catalog",
+        "databaseName": "bigdata",
+        "catalogExtraConfig": {
+          "daph.flink.edbNumber": "1",
+          "daph.flink.edbInNodeId": "in1",
+          "daph.dbType": "postgresql",
+          "daph.schemaName": "public",
+          "daph.databaseName": "bigdata"
+        }
+      },
+      "outLines": [
+        "in-line"
+      ]
+    },
+    {
+      "flag": "Flink117.sql.general.connector.GaMultipleOutput",
+      "config": {
+        "createConfigs": [
+          {
+            "daph.flink.enableEDB": "true",
+            "daph.flink.edbNumber": "1",
+            "daph.flink.edbInNodeId": "in1",
+            "daph.doris.engineType": "olap",
+            "daph.doris.labelType": "uuid",
+            "daph.doris.keyType": "UNIQUE",
+            "daph.doris.distType": "HASH",
+            "daph.doris.buckets": "12",
+            "daph.doris.props.replication_num": "1",
+            "daph.dbType": "doris",
+            "daph.databaseName": "bigdata",
+            "daph.url": "jdbc:mysql://192.168.6.66:9030/bigdata?useSSL=false",
+            "daph.tableNamePrefix": "z_pg_doris_edb_",
+            "daph.flink.saveMode": "append",
+            "connector": "doris",
+            "fenodes": "192.168.6.66:8030",
+            "jdbc-url": "jdbc:mysql://192.168.6.66:9030/bigdata?useSSL=false",
+            "username": "root",
+            "password": ""
+          }
+        ]
+      },
+      "inLines": [
+        "in-line"
+      ]
+    }
+  ]
+}

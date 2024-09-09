@@ -1,0 +1,61 @@
+{
+  "nodes": [
+    {
+      "flag": "Spark3.dataframe.batch.connector.HttpInput",
+      "config": {
+        "url": "https://cn.bing.com/search?q=王"
+      },
+      "outLines": [
+        "in-line1"
+      ]
+    },
+    {
+      "flag": "Spark3.dataframe.general.transformer.Sql",
+      "config": {
+        "sql": "select * from t"
+      },
+      "inLines": [
+        "in-line1"
+      ],
+      "outLines": [
+        "sql-tr-line"
+      ]
+    },
+    {
+      "flag": "Spark3.dataframe.batch.connector.CommonOutput",
+      "config": {
+        "format": "jdbc",
+        "cfg": {
+          "url": "jdbc:mysql://127.0.0.1:3306/daph?characterEncoding=UTF-8&useUnicode=true&useSSL=false&tinyInt1isBit=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai",
+          "dbtable": "out_t1",
+          "user": "root",
+          "password": "fffff",
+          "driver": "com.mysql.cj.jdbc.Driver",
+          "duplicateIncs": ""
+        },
+        "saveMode": "overwrite"
+      },
+      "inLines": [
+        "sql-tr-line"
+      ]
+    },
+    {
+      "flag": "Spark3.dataframe.batch.connector.CommonOutput",
+      "config": {
+        "format": "jdbc",
+        "cfg": {
+          "url": "jdbc:mysql://127.0.0.1:3306/daph?characterEncoding=UTF-8&useUnicode=true&useSSL=false&tinyInt1isBit=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai",
+          "dbtable": "out_t2",
+          "user": "root",
+          "password": "fffff",
+          "driver": "com.mysql.cj.jdbc.Driver",
+          "duplicateIncs": ""
+        },
+        "saveMode": "overwrite"
+      },
+      "inLines": [
+        "sql-tr-line"
+      ]
+    }
+  ]
+}

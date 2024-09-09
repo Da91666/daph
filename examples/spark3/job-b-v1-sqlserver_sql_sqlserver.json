@@ -1,0 +1,53 @@
+{
+  "options": {
+    "daph.home": "DAPH_HOME路径",
+    "daph.log-level": "info"
+  },
+  "nodes": [
+    {
+      "flag": "Spark3.dataframe.batch.connector.CommonInput",
+      "config": {
+        "cfg": {
+          "dbtable": "dbo.[sqlserver_daph3_user]",
+          "driver": "com.microsoft.sqlserver.jdbc.SQLServerDriver",
+          "password": "root@penghu@210930",
+          "url": "jdbc:sqlserver://192.168.3.202:1433;databaseName=bidata",
+          "user": "sa"
+        },
+        "format": "jdbc"
+      },
+      "outLines": [
+        "in-line1"
+      ]
+    },
+    {
+      "flag": "Spark3.dataframe.general.transformer.Sql",
+      "config": {
+        "sql": "select * from t"
+      },
+      "inLines": [
+        "in-line1"
+      ],
+      "outLines": [
+        "sql-tr-line"
+      ]
+    },
+    {
+      "flag": "Spark3.dataframe.batch.connector.CommonOutput",
+      "config": {
+        "cfg": {
+          "dbtable": "dbo.[dspark_sqlserver_user]",
+          "driver": "com.microsoft.sqlserver.jdbc.SQLServerDriver",
+          "password": "root@penghu@210930",
+          "url": "jdbc:sqlserver://192.168.3.202:1433;databaseName=bidata",
+          "user": "sa"
+        },
+        "format": "jdbc",
+        "saveMode": "append"
+      },
+      "inLines": [
+        "sql-tr-line"
+      ]
+    }
+  ]
+}

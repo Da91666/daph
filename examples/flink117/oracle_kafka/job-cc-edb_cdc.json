@@ -1,0 +1,57 @@
+{
+  "options": {
+    "daph.home": "DAPH_HOME路径",
+    "daph.log.level": "info"
+  },
+  "nodes": [
+    {
+      "flag": "Flink117.sql.general.connector.GaMultipleInput",
+      "id": "in1",
+      "config": {
+        "createConfigs": [
+          {
+            "daph.dbType": "oracle",
+            "daph.url": "jdbc:oracle:thin:@//192.168.6.66:1521/helowin",
+            "daph.databaseName": "helowin",
+            "daph.schemaName": "DAPHDB",
+            "daph.flink.enableEDB": "true",
+            "daph.flink.edbNumber": "1",
+            "connector": "oracle-cdc",
+            "hostname": "192.168.6.66",
+            "port": "1521",
+            "username": "family",
+            "password": "daph",
+            "database-name": "HELOWIN",
+            "debezium.log.mining.strategy": "online_catalog",
+            "debezium.log.mining.continuous.mine": "true",
+            "schema-name": "DAPHDB"
+          }
+        ]
+      },
+      "outLines": [
+        "in-line"
+      ]
+    },
+    {
+      "flag": "Flink117.sql.general.connector.GaMultipleOutput",
+      "config": {
+        "createConfigs": [
+          {
+            "daph.dbType": "kafka",
+            "daph.tableNamePrefix": "ora_cdc_",
+            "daph.flink.enableEDB": "true",
+            "daph.flink.edbInNodeId": "in1",
+            "daph.flink.edbNumber": "1",
+            "connector": "upsert-kafka",
+            "properties.bootstrap.servers": "192.168.6.66:9092",
+            "key.format": "json",
+            "value.format": "json"
+          }
+        ]
+      },
+      "inLines": [
+        "in-line"
+      ]
+    }
+  ]
+}

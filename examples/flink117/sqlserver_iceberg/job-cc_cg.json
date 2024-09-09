@@ -1,0 +1,50 @@
+{
+  "options": {
+    "daph.home": "DAPH_HOME路径",
+    "daph.log.level": "info"
+  },
+  "nodes": [
+    {
+      "flag": "Flink117.sql.general.connector.GaMultipleInput",
+      "config": {
+        "createConfigs": [
+          {
+            "daph.dbType": "sqlserver",
+            "daph.databaseName": "bidata",
+            "daph.schemaName": "dbo",
+            "daph.tableNames": "driver_action_time",
+            "connector": "jdbc",
+            "url": "jdbc:sqlserver://192.168.6.66:1433;databaseName=bidata",
+            "username": "sa",
+            "password": "daph"
+          }
+        ]
+      },
+      "outLines": [
+        "in-line"
+      ]
+    },
+    {
+      "flag": "Flink117.sql.general.connector.GaMultipleOutput",
+      "config": {
+        "catalogName": "iceberg_catalog",
+        "databaseName": "daph_iceberg",
+        "catalogExtraConfig": {
+          "daph.dbType": "iceberg",
+          "daph.tableNamePrefix": "batch_sqlserver",
+          "daph.flink.saveMode": "append",
+          "bucketing_version": "2"
+        },
+        "insertConfigs": [
+          {
+            "sql": "insert into iceberg_catalog.daph_iceberg.batch_sqlserver_in select * from default_catalog.default_database.`dbo.driver_action_time`",
+            "primaryKeys": "id"
+          }
+        ]
+      },
+      "inLines": [
+        "in-line"
+      ]
+    }
+  ]
+}

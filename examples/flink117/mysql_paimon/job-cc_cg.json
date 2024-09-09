@@ -1,0 +1,49 @@
+{
+  "options": {
+    "daph.home": "DAPH_HOME路径",
+    "daph.log.level": "info"
+  },
+  "nodes": [
+    {
+      "flag": "Flink117.sql.general.connector.GaMultipleInput",
+      "config": {
+        "createConfigs": [
+          {
+            "daph.dbType": "mysql",
+            "daph.databaseName": "daph_db1",
+            "daph.tableNames": "t_traffic_flow_car",
+            "connector": "jdbc",
+            "url": "jdbc:mysql://192.168.6.66:3306/daph_db1",
+            "username": "root",
+            "password": "root"
+          }
+        ]
+      },
+      "outLines": [
+        "in-line"
+      ]
+    },
+    {
+      "flag": "Flink117.sql.general.connector.GaMultipleOutput",
+      "config": {
+        "catalogName": "paimon_catalog",
+        "databaseName": "daph_db",
+        "catalogExtraConfig": {
+          "daph.dbType": "paimon",
+          "daph.tableNamePrefix": "i_",
+          "daph.flink.saveMode": "append",
+          "bucketing_version": "2"
+        },
+        "insertConfigs": [
+          {
+            "sql": "insert into paimon_catalog.daph_db.i_table_in select * from default_catalog.default_database.t_traffic_flow_car",
+            "primaryKeys": "ID"
+          }
+        ]
+      },
+      "inLines": [
+        "in-line"
+      ]
+    }
+  ]
+}

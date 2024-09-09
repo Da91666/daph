@@ -1,0 +1,127 @@
+[
+  {
+    "sourceTypes": [
+      "VARCHAR",
+      "CHAR"
+    ],
+    "targetTypes": [
+      "VARCHAR"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "LARGEINT",
+      "STRING",
+      "JSON"
+    ],
+    "targetTypes": [
+      "STRING"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "NULL_TYPE"
+    ],
+    "targetTypes": [
+      "NULL"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "BOOLEAN"
+    ],
+    "targetTypes": [
+      "BOOLEAN"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "TINYINT"
+    ],
+    "targetTypes": [
+      "TINYINT"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "SMALLINT"
+    ],
+    "targetTypes": [
+      "SMALLINT"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "INT"
+    ],
+    "targetTypes": [
+      "INT"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "BIGINT"
+    ],
+    "targetTypes": [
+      "BIGINT"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "FLOAT"
+    ],
+    "targetTypes": [
+      "FLOAT"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "DOUBLE"
+    ],
+    "targetTypes": [
+      "DOUBLE"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "DATE"
+    ],
+    "targetTypes": [
+      "DATE"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "DATETIME"
+    ],
+    "targetTypes": [
+      "TIMESTAMP"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "DECIMAL",
+      "DECIMALV2",
+      "DECIMALV3"
+    ],
+    "targetTypes": [
+      "DECIMAL"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "ARRAY"
+    ],
+    "targetTypes": [
+      "ARRAY"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "MAP"
+    ],
+    "targetTypes": [
+      "MAP"
+    ]
+  }
+]

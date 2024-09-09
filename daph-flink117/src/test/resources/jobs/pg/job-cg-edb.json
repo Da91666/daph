@@ -1,0 +1,44 @@
+{
+  "options": {
+    "daph.home": "DAPH_HOME路径",
+    "daph.log.level": "DEBUG"
+  },
+  "nodes": [
+    {
+      "flag": "Flink117.sql.general.connector.GaMultipleInput",
+      "id": "in1",
+      "config": {
+        "catalogName": "pg_catalog",
+        "databaseName": "bigdata",
+        "enableCatalogEDB": true,
+        "catalogExtraConfig": {
+          "daph.flink.edbNumber": "1",
+          "daph.schemaName": "public"
+        }
+      },
+      "outLines": [
+        "in-line"
+      ]
+    },
+    {
+      "flag": "Flink117.sql.general.connector.GaMultipleOutput",
+      "config": {
+        "catalogName": "pg_catalog_test",
+        "databaseName": "daph_flink_bigdata_test",
+        "enableCatalogEDB": true,
+        "catalogExtraConfig": {
+          "daph.tableNamePrefix": "z_pg_cg_",
+          "daph.tableNameSuffix": "_new",
+          "daph.schemaName": "public",
+          "daph.flink.edbInNodeId": "in1",
+          "daph.flink.edbNumber": "1",
+          "daph.flink.saveMode": "append",
+          "sink.max-retries": "1"
+        }
+      },
+      "inLines": [
+        "in-line"
+      ]
+    }
+  ]
+}

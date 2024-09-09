@@ -1,0 +1,39 @@
+{
+  "options": {
+    "daph.home": "DAPH_HOME路径",
+    "daph.log.level": "DEBUG"
+  },
+  "nodes": [
+    {
+      "flag": "Flink117.sql.general.connector.GaMultipleInput",
+      "config": {
+        "catalogName": "pg_catalog",
+        "databaseName": "bigdata",
+        "catalogExtraConfig": {
+          "daph.tableNames": "dp_spark35",
+          "daph.schemaName": "public",
+          "daph.databaseName": "bigdata"
+        }
+      },
+      "outLines": [
+        "in-line"
+      ]
+    },
+    {
+      "flag": "Flink117.sql.general.connector.GaMultipleOutput",
+      "config": {
+        "catalogName": "pg_catalog_test",
+        "daph.schemaName": "public",
+        "databaseName": "daph_flink_bigdata_test",
+        "insertConfigs": [
+          {
+            "sql": "insert into pg_catalog_test.daph_flink_bigdata_test.`public.z_cg_dp_spark35` select * from pg_catalog.bigdata.`public.dp_spark35`"
+          }
+        ]
+      },
+      "inLines": [
+        "in-line"
+      ]
+    }
+  ]
+}

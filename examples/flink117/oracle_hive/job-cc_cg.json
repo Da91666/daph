@@ -1,0 +1,51 @@
+{
+  "options": {
+    "daph.home": "DAPH_HOME路径",
+    "daph.log.level": "info"
+  },
+  "nodes": [
+    {
+      "flag": "Flink117.sql.general.connector.GaMultipleInput",
+      "config": {
+        "createConfigs": [
+          {
+            "daph.dbType": "oracle",
+            "daph.databaseName": "helowin",
+            "daph.schemaName": "BIGDATA",
+            "daph.tableNames": "DAPH_CDC_1",
+            "connector": "jdbc",
+            "url": "jdbc:oracle:thin:@//192.168.6.66:1521/helowin",
+            "username": "family",
+            "password": "daph"
+          }
+        ]
+      },
+      "outLines": [
+        "in-line"
+      ]
+    },
+    {
+      "flag": "Flink117.sql.general.connector.GaMultipleOutput",
+      "config": {
+        "catalogName": "hive_catalog",
+        "databaseName": "daph_hive",
+        "catalogExtraConfig": {
+          "daph.dbType": "hive",
+          "daph.tableNamePrefix": "z_",
+          "daph.flink.saveMode": "append",
+          "daph.flink.dialect": "hive",
+          "daph.hive.format": "orc",
+          "bucketing_version": "2"
+        },
+        "insertConfigs": [
+          {
+            "sql": "insert into hive_catalog.daph_hive.z_table_in select * from default_catalog.default_database.`BIGDATA.DAPH_CDC_1`"
+          }
+        ]
+      },
+      "inLines": [
+        "in-line"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "options": {
+    "daph.home": "DAPH_HOME路径",
+    "daph.log.level": "info"
+  },
+  "nodes": [
+    {
+      "flag": "Flink117.sql.general.connector.GaMultipleInput",
+      "id": "in1",
+      "config": {
+        "createConfigs": [
+          {
+            "daph.dbType": "oracle",
+            "daph.url": "jdbc:oracle:thin:@//192.168.6.66:1521/helowin",
+            "daph.databaseName": "helowin",
+            "daph.schemaName": "DAPHDB",
+            "daph.flink.enableEDB": "true",
+            "daph.flink.edbNumber": "1",
+            "connector": "jdbc",
+            "url": "jdbc:oracle:thin:@//192.168.6.66:1521/helowin",
+            "username": "family",
+            "password": "daph"
+          }
+        ]
+      },
+      "outLines": [
+        "in-line"
+      ]
+    },
+    {
+      "flag": "Flink117.sql.general.connector.GaMultipleOutput",
+      "config": {
+        "catalogName": "hive_catalog",
+        "databaseName": "daph_hive",
+        "enableCatalogEDB": true,
+        "catalogExtraConfig": {
+          "daph.dbType": "hive",
+          "daph.tableNamePrefix": "b_",
+          "daph.flink.edbInNodeId": "in1",
+          "daph.flink.edbNumber": "1",
+          "daph.flink.saveMode": "append",
+          "daph.flink.dialect": "hive",
+          "daph.hive.format": "parquet",
+          "bucketing_version": "2"
+        }
+      },
+      "inLines": [
+        "in-line"
+      ]
+    }
+  ]
+}

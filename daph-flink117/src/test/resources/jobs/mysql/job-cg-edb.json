@@ -1,0 +1,40 @@
+{
+  "options": {
+    "daph.home": "DAPH_HOME路径",
+    "daph.log.level": "info"
+  },
+  "nodes": [
+    {
+      "flag": "Flink117.sql.general.connector.GaMultipleInput",
+      "id": "in1",
+      "config": {
+        "catalogName": "mysql_catalog",
+        "databaseName": "daph_db1",
+        "enableCatalogEDB": true
+      },
+      "outLines": [
+        "in-line"
+      ]
+    },
+    {
+      "flag": "Flink117.sql.general.connector.GaMultipleOutput",
+      "config": {
+        "catalogName": "mysql_catalog",
+        "databaseName": "daph_db2",
+        "enableCatalogEDB": true,
+        "catalogExtraConfig": {
+          "daph.tableNamePrefix": "c_",
+          "daph.tableNameSuffix": "_new",
+          "daph.tableNameCase": "upper",
+          "daph.columnNameCase": "upper",
+          "daph.flink.edbInNodeId": "in1",
+          "daph.flink.saveMode": "append",
+          "sink.max-retries": "1"
+        }
+      },
+      "inLines": [
+        "in-line"
+      ]
+    }
+  ]
+}

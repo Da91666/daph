@@ -1,0 +1,45 @@
+{
+  "options": {
+    "daph.home": "DAPH_HOME路径",
+    "daph.log.level": "DEBUG"
+  },
+  "nodes": [
+    {
+      "flag": "Flink117.sql.general.connector.GaMultipleInput",
+      "id": "in1",
+      "config": {
+        "catalogName": "pg_catalog",
+        "databaseName": "bigdata",
+        "enableCatalogEDB": true,
+        "catalogExtraConfig": {
+          "daph.schemaName": "public",
+          "daph.flink.edbNumber": "1"
+        }
+      },
+      "outLines": [
+        "in-line"
+      ]
+    },
+    {
+      "flag": "Flink117.sql.general.connector.GaMultipleOutput",
+      "config": {
+        "catalogName": "hive_catalog",
+        "databaseName": "daph_sqlserver",
+        "enableCatalogEDB": true,
+        "catalogExtraConfig": {
+          "daph.dbType": "hive",
+          "daph.tableNamePrefix": "z_b_pg_hive_",
+          "daph.flink.edbInNodeId": "in1",
+          "daph.flink.edbNumber": "1",
+          "daph.flink.saveMode": "append",
+          "daph.flink.dialect": "hive",
+          "daph.hive.format": "parquet",
+          "bucketing_version": "2"
+        }
+      },
+      "inLines": [
+        "in-line"
+      ]
+    }
+  ]
+}

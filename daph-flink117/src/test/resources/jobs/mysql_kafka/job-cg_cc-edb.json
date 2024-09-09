@@ -1,0 +1,42 @@
+{
+  "options": {
+    "daph.home": "DAPH_HOME路径",
+    "daph.log.level": "info"
+  },
+  "nodes": [
+    {
+      "flag": "Flink117.sql.general.connector.GaMultipleInput",
+      "id": "in1",
+      "config": {
+        "catalogName": "mysql_catalog",
+        "databaseName": "daph",
+        "enableCatalogEDB": true,
+        "catalogExtraConfig": {
+          "daph.flink.onlyUnPrimaryTables": "true"
+        }
+      },
+      "outLines": [
+        "in-line"
+      ]
+    },
+    {
+      "flag": "Flink117.sql.general.connector.GaMultipleOutput",
+      "config": {
+        "createConfigs": [
+          {
+            "daph.dbType": "kafka",
+            "daph.tableNamePrefix": "mysql6_",
+            "daph.flink.enableEDB": "true",
+            "daph.flink.edbInNodeId": "in1",
+            "connector": "kafka",
+            "properties.bootstrap.servers": "192.168.6.66:9092",
+            "format": "json"
+          }
+        ]
+      },
+      "inLines": [
+        "in-line"
+      ]
+    }
+  ]
+}

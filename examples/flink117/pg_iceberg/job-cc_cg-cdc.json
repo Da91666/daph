@@ -1,0 +1,56 @@
+{
+  "options": {
+    "daph.home": "DAPH_HOME路径",
+    "daph.log.level": "DEBUG"
+  },
+  "nodes": [
+    {
+      "flag": "Flink117.sql.general.connector.GaMultipleInput",
+      "config": {
+        "createConfigs": [
+          {
+            "daph.dbType": "postgresql",
+            "daph.url": "jdbc:postgresql://192.168.6.66:5432/bigdata",
+            "daph.databaseName": "bigdata",
+            "daph.tableNames": "dp_spark35",
+            "daph.schemaName": "public",
+            "connector": "postgres-cdc",
+            "hostname": "192.168.6.66",
+            "schema-name": "public",
+            "port": "5432",
+            "username": "postgres",
+            "slot.name": "flink",
+            "decoding.plugin.name": "pgoutput",
+            "password": "postgres",
+            "database-name": "bigdata",
+            "scan.incremental.snapshot.enabled": "true"
+          }
+        ]
+      },
+      "outLines": [
+        "in-line"
+      ]
+    },
+    {
+      "flag": "Flink117.sql.general.connector.GaMultipleOutput",
+      "config": {
+        "catalogName": "iceberg_catalog",
+        "databaseName": "daph_iceberg",
+        "catalogExtraConfig": {
+          "daph.dbType": "iceberg",
+          "daph.tableNamePrefix": "z_cdc_",
+          "daph.flink.saveMode": "append",
+          "bucketing_version": "2"
+        },
+        "insertConfigs": [
+          {
+            "sql": "insert into iceberg_catalog.daph_iceberg.z_cdc_dp_spark35 select * from default_catalog.default_database.`public.dp_spark35`"
+          }
+        ]
+      },
+      "inLines": [
+        "in-line"
+      ]
+    }
+  ]
+}

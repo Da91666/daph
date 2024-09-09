@@ -1,0 +1,56 @@
+{
+  "options": {
+    "daph.home": "DAPH_HOME路径",
+    "daph.log.level": "info"
+  },
+  "nodes": [
+    {
+      "flag": "Flink117.sql.general.connector.GaMultipleInput",
+      "id": "in1",
+      "config": {
+        "createConfigs": [
+          {
+            "daph.dbType": "postgresql",
+            "daph.url": "jdbc:postgresql://192.168.6.66:5432/bigdata",
+            "daph.databaseName": "bigdata",
+            "daph.schemaName": "public",
+            "connector": "postgres-cdc",
+            "hostname": "192.168.6.66",
+            "schema-name": "public",
+            "port": "5432",
+            "username": "postgres",
+            "slot.name": "flink",
+            "decoding.plugin.name": "pgoutput",
+            "password": "postgres",
+            "database-name": "bigdata",
+            "scan.incremental.snapshot.enabled": "true",
+            "daph.flink.enableEDB": "true",
+            "daph.flink.edbNumber": "1"
+          }
+        ]
+      },
+      "outLines": [
+        "in-line"
+      ]
+    },
+    {
+      "flag": "Flink117.sql.general.connector.GaMultipleOutput",
+      "config": {
+        "catalogName": "iceberg_catalog",
+        "databaseName": "daph_iceberg",
+        "enableCatalogEDB": true,
+        "catalogExtraConfig": {
+          "daph.dbType": "iceberg",
+          "daph.flink.edbInNodeId": "in1",
+          "daph.flink.edbNumber": "1",
+          "daph.tableNamePrefix": "z_all_cdc_",
+          "daph.flink.saveMode": "append",
+          "bucketing_version": "2"
+        }
+      },
+      "inLines": [
+        "in-line"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "options": {
+    "daph.home": "DAPH_HOME路径",
+    "daph.log.level": "DEBUG"
+  },
+  "nodes": [
+    {
+      "flag": "Flink117.sql.general.connector.GaMultipleInput",
+      "id": "in1",
+      "config": {
+        "createConfigs": [
+          {
+            "daph.dbType": "postgresql",
+            "daph.url": "jdbc:postgresql://192.168.6.66:5432/bigdata",
+            "daph.databaseName": "bigdata",
+            "daph.flink.enableEDB": "true",
+            "daph.schemaName": "public",
+            "daph.flink.onlyPrimaryTables": "true",
+            "connector": "postgres-cdc",
+            "hostname": "192.168.6.66",
+            "schema-name": "public",
+            "port": "5432",
+            "username": "postgres",
+            "password": "postgres",
+            "slot.name": "flink",
+            "decoding.plugin.name": "pgoutput",
+            "database-name": "bigdata",
+            "scan.incremental.snapshot.enabled": "true",
+            "daph.flink.edbNumber": "1"
+          }
+        ]
+      },
+      "outLines": [
+        "in-line"
+      ]
+    },
+    {
+      "flag": "Flink117.sql.general.connector.GaMultipleOutput",
+      "config": {
+        "createConfigs": [
+          {
+            "daph.dbType": "postgresql",
+            "daph.url": "jdbc:postgresql://192.168.6.66:5432/daph_flink_bigdata_test",
+            "daph.databaseName": "daph_flink_bigdata_test",
+            "daph.flink.enableEDB": "true",
+            "daph.flink.edbInNodeId": "in1",
+            "connector": "jdbc",
+            "url": "jdbc:postgresql://192.168.6.66:5432/daph_flink_bigdata_test",
+            "username": "postgres",
+            "password": "postgres",
+            "daph.flink.edbNumber": "1"
+          }
+        ]
+      },
+      "inLines": [
+        "in-line"
+      ]
+    }
+  ]
+}

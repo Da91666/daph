@@ -1,0 +1,65 @@
+{
+  "envConfig": {
+    "table.sql-dialect": "default",
+    "table.exec.sink.not-null-enforcer": "DROP",
+    "execution.runtime-mode": "BATCH"
+  },
+  "catalogConfigs": [
+    {
+      "enabled": "true",
+      "type": "jdbc",
+      "name": "mysql_catalog",
+      "default-database": "daph_db1",
+      "username": "root",
+      "password": "root",
+      "base-url": "jdbc:mysql://192.168.6.66:3306"
+    },
+    {
+      "enabled": "true",
+      "type": "jdbc",
+      "name": "pg_catalog",
+      "default-database": "bigdata",
+      "username": "postgres",
+      "password": "postgres",
+      "base-url": "jdbc:postgresql://192.168.6.66:5432"
+    },
+    {
+      "enabled": "true",
+      "type": "jdbc",
+      "name": "pg_catalog_test",
+      "default-database": "daph_flink_bigdata_test",
+      "username": "postgres",
+      "password": "postgres",
+      "base-url": "jdbc:postgresql://192.168.6.66:5432"
+    },
+    {
+      "enabled": "true",
+      "type": "hive",
+      "name": "hive_catalog",
+      "default-database": "daph_hive",
+      "hive-conf-dir": "/opt/datasophon/hive-3.1.0/conf"
+    },
+    {
+      "enabled": "true",
+      "type": "iceberg",
+      "name": "iceberg_catalog",
+      "catalog-type": "hive",
+      "uri": "thrift://192.168.6.66:9083",
+      "clients": "5",
+      "property-version": "1",
+      "warehouse": "hdfs://192.168.6.66:8020/user/hive/warehouse",
+      "cache-enabled": "true",
+      "cache.expiration-interval-ms": "5000"
+    },
+    {
+      "enabled": "true",
+      "type": "paimon",
+      "name": "paimon_catalog",
+      "catalog-type": "hive",
+      "uri": "thrift://192.168.6.66:9083",
+      "hive-conf-dir": "/hive/conf",
+      "hadoop-conf-dir": "/hadoop/conf",
+      "warehouse": "hdfs://192.168.6.66:8020/user/hive/warehouse"
+    }
+  ]
+}

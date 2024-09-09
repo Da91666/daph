@@ -1,0 +1,51 @@
+{
+  "options": {
+    "daph.home": "DAPH_HOME路径",
+    "daph.log.level": "info"
+  },
+  "nodes": [
+    {
+      "flag": "Flink117.sql.general.connector.GaMultipleInput",
+      "id": "in1",
+      "config": {
+        "catalogName": "pg_catalog",
+        "databaseName": "bigdata",
+        "enableCatalogEDB": true,
+        "enableCatalogCDC": true,
+        "catalogExtraConfig": {
+          "daph.flink.onlyPrimaryTables": "true",
+          "daph.schemaName": "public",
+          "scan.startup.mode": "initial",
+          "daph.flink.edbInNodeId": "in1",
+          "daph.flink.edbNumber": "1",
+          "slot.name": "flink",
+          "decoding.plugin.name": "pgoutput"
+        }
+      },
+      "outLines": [
+        "in-line"
+      ]
+    },
+    {
+      "flag": "Flink117.sql.general.connector.GaMultipleOutput",
+      "config": {
+        "createConfigs": [
+          {
+            "daph.dbType": "kafka",
+            "daph.tableNamePrefix": "z_pg_edb_cdc_",
+            "daph.flink.enableEDB": "true",
+            "daph.flink.edbInNodeId": "in1",
+            "daph.flink.edbNumber": "1",
+            "connector": "upsert-kafka",
+            "properties.bootstrap.servers": "192.168.6.66:9092",
+            "key.format": "json",
+            "value.format": "json"
+          }
+        ]
+      },
+      "inLines": [
+        "in-line"
+      ]
+    }
+  ]
+}

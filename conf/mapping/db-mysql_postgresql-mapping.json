@@ -1,0 +1,132 @@
+[
+  {
+    "sourceTypes": [
+      "VARCHAR",
+      "CHAR"
+    ],
+    "targetTypes": [
+      "VARCHAR(65535)"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "TEXT",
+      "LONGTEXT",
+      "MEDIUMTEXT",
+      "TINYTEXT",
+      "JSON"
+    ],
+    "targetTypes": [
+      "TEXT"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "SMALLINT",
+      "TINYINT UNSIGNED"
+    ],
+    "targetTypes": [
+      "SMALLINT",
+      "INT2",
+      "SMALLSERIAL",
+      "SERIAL2"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "INT",
+      "MEDIUMINT",
+      "SMALLINT UNSIGNED",
+      "TINYINT"
+    ],
+    "targetTypes": [
+      "INTEGER",
+      "INT4",
+      "SERIAL"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "BIGINT",
+      "INT UNSIGNED"
+    ],
+    "targetTypes": [
+      "BIGINT",
+      "INT8",
+      "BIGSERIAL"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "FLOAT"
+    ],
+    "targetTypes": [
+      "REAL",
+      "FLOAT4"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "DOUBLE",
+      "DOUBLE PRECISION"
+    ],
+    "targetTypes": [
+      "FLOAT8",
+      "DOUBLE PRECISION"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "DECIMAL",
+      "NUMERIC",
+      "BIGINT UNSIGNED"
+    ],
+    "targetTypes": [
+      "DECIMAL(38,38)",
+      "NUMERIC(38,38)"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "BOOLEAN",
+      "TINYINT(1)"
+    ],
+    "targetTypes": [
+      "BOOLEAN"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "DATE"
+    ],
+    "targetTypes": [
+      "DATE"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "TIME"
+    ],
+    "targetTypes": [
+      "TIME"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "DATETIME"
+    ],
+    "targetTypes": [
+      "TIMESTAMP"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "BINARY",
+      "VARBINARY",
+      "BLOB"
+    ],
+    "targetTypes": [
+      "BYTEA"
+    ]
+  }
+]

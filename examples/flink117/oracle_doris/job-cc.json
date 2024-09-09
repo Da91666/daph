@@ -1,0 +1,62 @@
+{
+  "options": {
+    "daph.home": "DAPH_HOME路径",
+    "daph.log.level": "info"
+  },
+  "nodes": [
+    {
+      "flag": "Flink117.sql.general.connector.GaMultipleInput",
+      "config": {
+        "createConfigs": [
+          {
+            "daph.dbType": "oracle",
+            "daph.databaseName": "helowin",
+            "daph.schemaName": "BIGDATA",
+            "daph.tableNames": "DAPH_CDC_1",
+            "connector": "jdbc",
+            "url": "jdbc:oracle:thin:@//192.168.6.66:1521/helowin",
+            "username": "family",
+            "password": "daph"
+          }
+        ]
+      },
+      "outLines": [
+        "in-line"
+      ]
+    },
+    {
+      "flag": "Flink117.sql.general.connector.GaMultipleOutput",
+      "config": {
+        "createConfigs": [
+          {
+            "daph.dbType": "doris",
+            "daph.url": "jdbc:mysql://192.168.6.66:9030/daph_oracle?useSSL=false",
+            "daph.databaseName": "daph_oracle",
+            "daph.tableNames": "oracle_jdbc_1",
+            "daph.flink.saveMode": "append",
+            "daph.doris.engineType": "olap",
+            "daph.doris.labelType": "uuid",
+            "daph.doris.keyType": "UNIQUE",
+            "daph.doris.distType": "HASH",
+            "daph.doris.buckets": "12",
+            "daph.doris.props.replication_num": "1",
+            "connector": "doris",
+            "fenodes": "192.168.6.66:8030",
+            "jdbc-url": "jdbc:mysql://192.168.6.66:9030/daph_oracle?useSSL=false",
+            "username": "root",
+            "password": ""
+          }
+        ],
+        "insertConfigs": [
+          {
+            "sql": "insert into oracle_jdbc_1 select * from `BIGDATA.DAPH_CDC_1`",
+            "primaryKeys": "ID"
+          }
+        ]
+      },
+      "inLines": [
+        "in-line"
+      ]
+    }
+  ]
+}

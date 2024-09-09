@@ -1,0 +1,23 @@
+[
+  {
+    "flag": "Flink117.sql.general.connector.GaMultipleInput",
+    "alias": ["input", "in", "source", "src"],
+    "jarName": "daph-node-flink117-sql-general.jar",
+    "className": "com.dasea.daph.node.flink117.sql.general.connector.GaMultipleInput",
+    "classPrefix": "com.dasea.daph.node.flink117.sql.general"
+  },
+  {
+    "flag": "Flink117.sql.general.connector.GaMultipleOutput",
+    "alias": ["output", "out", "sink", "sk"],
+    "jarName": "daph-node-flink117-sql-general.jar",
+    "className": "com.dasea.daph.node.flink117.sql.general.connector.GaMultipleOutput",
+    "classPrefix": "com.dasea.daph.node.flink117.sql.general"
+  },
+  {
+    "flag": "Flink117.sql.general.transformer.GaMMSQL",
+    "alias": ["sql", "transformer", "tr", "processor", "pr"],
+    "jarName": "daph-node-flink117-sql-general.jar",
+    "className": "com.dasea.daph.node.flink117.sql.general.transformer.GaMMSQL",
+    "classPrefix": "com.dasea.daph.node.flink117.sql.general"
+  }
+]

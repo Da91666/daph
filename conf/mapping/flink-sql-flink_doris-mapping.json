@@ -1,0 +1,126 @@
+[
+  {
+    "sourceTypes": [
+      "CHAR",
+      "VARCHAR"
+    ],
+    "targetTypes": [
+      "VARCHAR(16383)"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "STRING"
+    ],
+    "targetTypes": [
+      "STRING"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "NULL"
+    ],
+    "targetTypes": [
+      "NULL_TYPE"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "BOOLEAN"
+    ],
+    "targetTypes": [
+      "BOOLEAN"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "TINYINT"
+    ],
+    "targetTypes": [
+      "TINYINT"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "SMALLINT"
+    ],
+    "targetTypes": [
+      "SMALLINT"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "INT"
+    ],
+    "targetTypes": [
+      "INT"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "BIGINT"
+    ],
+    "targetTypes": [
+      "BIGINT"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "FLOAT"
+    ],
+    "targetTypes": [
+      "FLOAT"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "DOUBLE"
+    ],
+    "targetTypes": [
+      "DOUBLE"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "DATE"
+    ],
+    "targetTypes": [
+      "DATEV2",
+      "DATE"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "TIMESTAMP"
+    ],
+    "targetTypes": [
+      "DATETIME"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "DECIMAL"
+    ],
+    "targetTypes": [
+      "DECIMALV3(38,38)",
+      "DECIMALV2(27,9)",
+      "DECIMAL(38,38)"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "ARRAY"
+    ],
+    "targetTypes": [
+      "ARRAY"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "MAP"
+    ],
+    "targetTypes": [
+      "MAP"
+    ]
+  }
+]

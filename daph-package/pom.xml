@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.dasea.daph</groupId>
+        <artifactId>daph</artifactId>
+        <version>master</version>
+    </parent>
+
+    <artifactId>daph-package</artifactId>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <prod.verson>1.0.0</prod.verson>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <copy todir="${basedir}/target/build-jars-dir/jars/framework">
+                                    <fileset dir="${basedir}/../daph-core/target/">
+                                        <!-- 指定需要复制的文件或文件集 -->
+                                        <include name="*.tar.gz"/>
+                                    </fileset>
+                                </copy>
+                                <copy todir="${basedir}/target/build-jars-dir/jars/computers/flink117">
+                                    <fileset dir="${basedir}/../daph-flink117/target/">
+                                        <!-- 指定需要复制的文件或文件集 -->
+                                        <include name="*.tar.gz"/>
+                                    </fileset>
+                                </copy>
+                                <copy todir="${basedir}/target/build-jars-dir/jars/computers/jvm">
+                                    <fileset dir="${basedir}/../daph-jvm/target/">
+                                        <!-- 指定需要复制的文件或文件集 -->
+                                        <include name="*.tar.gz"/>
+                                    </fileset>
+                                </copy>
+                                <copy todir="${basedir}/target/build-jars-dir/jars/computers/spark3">
+                                    <fileset dir="${basedir}/../daph-spark3/target/">
+                                        <!-- 指定需要复制的文件或文件集 -->
+                                        <include name="*.tar.gz"/>
+                                    </fileset>
+                                </copy>
+                                <copy todir="${basedir}/target/build-jars-dir/jars/nodes/">
+                                    <fileset dir="${basedir}/../daph-nodes/">
+                                        <!-- 指定需要复制的文件或文件集 -->
+                                        <include name="*/target/daph-node-*${project.version}.jar"/>
+
+                                    </fileset>
+                                    <!-- 使用 mapper 元素去除文件路径 -->
+                                    <mapper type="flatten" />
+                                </copy>
+                                <copy todir="${basedir}/target/build-jars-dir/jars/starters/">
+                                    <fileset dir="${basedir}/../daph-starters/">
+                                        <!-- 指定需要复制的文件或文件集 -->
+                                        <include name="*/target/daph-*${project.version}.jar"/>
+
+                                    </fileset>
+                                    <!-- 使用 mapper 元素去除文件路径 -->
+                                    <mapper type="flatten" />
+                                </copy>
+                            </target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>untar-resources</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <untar src="${basedir}/target/build-jars-dir/jars/framework/daph-core-${project.version}-bin.tar.gz"
+                                       dest="${basedir}/target/build-jars-dir/jars/framework/"
+                                       compression="gzip"/>
+                                <untar src="${basedir}/target/build-jars-dir/jars/computers/flink117/daph-flink117-${project.version}-bin.tar.gz"
+                                       dest="${basedir}/target/build-jars-dir/jars/computers/flink117/"
+                                       compression="gzip"/>
+                                <untar src="${basedir}/target/build-jars-dir/jars/computers/jvm/daph-jvm-${project.version}-bin.tar.gz"
+                                       dest="${basedir}/target/build-jars-dir/jars/computers/jvm/"
+                                       compression="gzip"/>
+                                <untar src="${basedir}/target/build-jars-dir/jars/computers/spark3/daph-spark3-${project.version}-bin.tar.gz"
+                                       dest="${basedir}/target/build-jars-dir/jars/computers/spark3/"
+                                       compression="gzip"/>
+                                <!-- 重命名jar文件,移除版本号 -->
+                                <!-- 批量重命名文件 -->
+                                <move todir="${basedir}/target/build-jars-dir/jars/nodes/">
+                                    <fileset dir="${basedir}/target/build-jars-dir/jars/nodes/">
+                                        <!-- 这里可以根据需要选择文件 -->
+                                        <include name="*${project.version}.jar"/>
+                                    </fileset>
+                                    <mapper type="glob" from="*-${project.version}.jar" to="*.jar"/>
+                                </move>
+                                <move todir="${basedir}/target/build-jars-dir/jars/starters/">
+                                    <fileset dir="${basedir}/target/build-jars-dir/jars/starters/">
+                                        <!-- 这里可以根据需要选择文件 -->
+                                        <include name="*${project.version}.jar"/>
+                                    </fileset>
+                                    <mapper type="glob" from="*-${project.version}.jar" to="*.jar"/>
+                                </move>
+                                <move todir="${basedir}/target/build-jars-dir/jars/framework/">
+                                    <fileset dir="${basedir}/target/build-jars-dir/jars/framework/">
+                                        <!-- 这里可以根据需要选择文件 -->
+                                        <include name="*${project.version}.jar"/>
+                                    </fileset>
+                                    <mapper type="glob" from="*-${project.version}.jar" to="*.jar"/>
+                                </move>
+                                <move todir="${basedir}/target/build-jars-dir/jars/computers/spark3/">
+                                    <fileset dir="${basedir}/target/build-jars-dir/jars/computers/spark3/">
+                                        <!-- 这里可以根据需要选择文件 -->
+                                        <include name="*${project.version}.jar"/>
+                                    </fileset>
+                                    <mapper type="glob" from="*-${project.version}.jar" to="*.jar"/>
+                                </move>
+                                <move todir="${basedir}/target/build-jars-dir/jars/computers/flink117/">
+                                    <fileset dir="${basedir}/target/build-jars-dir/jars/computers/flink117/">
+                                        <!-- 这里可以根据需要选择文件 -->
+                                        <include name="*${project.version}.jar"/>
+                                    </fileset>
+                                    <mapper type="glob" from="*-${project.version}.jar" to="*.jar"/>
+                                </move>
+                                <move todir="${basedir}/target/build-jars-dir/jars/computers/jvm/">
+                                    <fileset dir="${basedir}/target/build-jars-dir/jars/computers/jvm/">
+                                        <!-- 这里可以根据需要选择文件 -->
+                                        <include name="*${project.version}.jar"/>
+                                    </fileset>
+                                    <mapper type="glob" from="*-${project.version}.jar" to="*.jar"/>
+                                </move>
+                               <!-- start重命名-->
+                            </target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>delete-files</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <!-- 删除单个文件 -->
+                                <delete file="${basedir}/target/build-jars-dir/jars/framework/daph-core-${project.version}-bin.tar.gz"/>
+                                <delete file="${basedir}/target/build-jars-dir/jars/computers/flink117/daph-flink117-${project.version}-bin.tar.gz"/>
+                                <delete file="${basedir}/target/build-jars-dir/jars/computers/jvm/daph-jvm-${project.version}-bin.tar.gz"/>
+                                <delete file="${basedir}/target/build-jars-dir/jars/computers/spark3/daph-spark3-${project.version}-bin.tar.gz"/>
+                            </target>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.6.0</version>
+                <executions>
+                    <execution>
+                        <id>make-assembly-daph</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <descriptors>
+                                <descriptor>../assembly/assembly-daph.xml</descriptor>
+                            </descriptors>
+                            <finalName>daph-${prod.verson}-pkg</finalName>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>make-assembly-daph-only_spark</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <descriptors>
+                                <descriptor>../assembly/assembly-daph-spark.xml</descriptor>
+                            </descriptors>
+                            <finalName>daph-${prod.verson}-pkg</finalName>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>make-assembly-daph-only_flink</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <descriptors>
+                                <descriptor>../assembly/assembly-daph-flink.xml</descriptor>
+                            </descriptors>
+                            <finalName>daph-${prod.verson}-pkg</finalName>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

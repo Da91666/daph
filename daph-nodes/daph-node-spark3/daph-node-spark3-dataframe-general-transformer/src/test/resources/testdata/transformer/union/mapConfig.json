@@ -1,0 +1,19 @@
+{
+  "flag": "Spark3.dataframe.general.transformer.flatMap",
+  "name": "abc",
+  "config": {
+    "expressions":[
+      "id",
+      "name as mingren"
+    ]
+  },
+  "inLines": [
+    "ds1"
+  ],
+  "outLines": [
+    "out1"
+  ],
+  "extraOptions": {
+
+  }
+}

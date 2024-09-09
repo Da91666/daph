@@ -1,0 +1,50 @@
+{
+  "options": {
+    "daph.home": "DAPH_HOME路径",
+    "daph.log.level": "debug"
+  },
+  "nodes": [
+    {
+      "flag": "Flink117.sql.general.connector.GaMultipleInput",
+      "id": "in1",
+      "config": {
+        "createConfigs": [
+          {
+            "daph.dbType": "oracle",
+            "daph.url": "jdbc:oracle:thin:@//192.168.3.202:1521/helowin",
+            "daph.databaseName": "helowin",
+            "daph.schemaName": "BIGDATA",
+            "daph.flink.enableEDB": "true",
+            "connector": "jdbc",
+            "url": "jdbc:oracle:thin:@//192.168.3.202:1521/helowin",
+            "username": "family",
+            "password": "zyhcdc"
+          }
+        ]
+      },
+      "outLines": [
+        "in-line"
+      ]
+    },
+    {
+      "flag": "Flink117.sql.general.connector.GaMultipleOutput",
+      "config": {
+        "createConfigs": [
+          {
+            "daph.flink.enableEDB": "true",
+            "daph.flink.edbInNodeId": "in1",
+            "connector": "starrocks",
+            "jdbc-url": "jdbc:mysql://192.168.3.204:9030",
+            "load-url": "192.168.3.204:8030",
+            "database-name": "daph",
+            "username": "root",
+            "password": ""
+          }
+        ]
+      },
+      "inLines": [
+        "in-line"
+      ]
+    }
+  ]
+}

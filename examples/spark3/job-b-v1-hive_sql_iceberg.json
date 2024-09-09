@@ -1,0 +1,44 @@
+{
+  "options": {
+    "daph.home": "DAPH_HOME路径",
+    "daph.log-level": "info"
+  },
+  "nodes": [
+    {
+      "flag": "Spark3.dataframe.batch.connector.CommonInput",
+      "config": {
+        "isCatalogTable": "true",
+        "tableName": "dw.dspark_mysql_user"
+      },
+      "outLines": [
+        "in-line1"
+      ]
+    },
+    {
+      "flag": "Spark3.dataframe.general.transformer.Sql",
+      "config": {
+        "sql": "select * from t"
+      },
+      "inLines": [
+        "in-line1"
+      ],
+      "outLines": [
+        "sql-tr-line"
+      ]
+    },
+    {
+      "flag": "Spark3.dataframe.batch.connector.CommonOutput",
+      "config": {
+        "v2": "true",
+        "v2Config": {
+          "tableName": "hive_catalog.iceberg_db.dspark_hive_user",
+          "method": "append"
+        },
+        "format": "org.apache.iceberg.spark.source.IcebergSource"
+      },
+      "inLines": [
+        "sql-tr-line"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "options": {
+    "daph.home": "DAPH_HOME路径",
+    "daph.log-level": "info"
+  },
+  "nodes": [
+    {
+      "flag": "Spark3.dataframe.batch.connector.CommonInput",
+      "config": {
+        "cfg": {
+          "dbtable": "\"public\".daph3_test_user_1",
+          "driver": "org.postgresql.Driver",
+          "password": "root",
+          "url": "jdbc:postgresql://192.168.3.202:5432/bigdata",
+          "user": "bigdata"
+        },
+        "saveMode": "append",
+        "format": "jdbc"
+      },
+      "outLines": [
+        "in-line1"
+      ]
+    },
+    {
+      "flag": "Spark3.dataframe.general.transformer.Sql",
+      "config": {
+        "sql": "select * from t"
+      },
+      "inLines": [
+        "in-line1"
+      ],
+      "outLines": [
+        "sql-tr-line"
+      ]
+    },
+    {
+      "flag": "Spark3.dataframe.batch.connector.CommonOutput",
+      "config": {
+        "cfg": {
+          "dbtable": "\"public\".dspark_pt_user",
+          "driver": "org.postgresql.Driver",
+          "password": "root",
+          "url": "jdbc:postgresql://192.168.3.202:5432/bigdata",
+          "user": "bigdata"
+        },
+        "format": "jdbc",
+        "saveMode": "append"
+      },
+      "inLines": [
+        "sql-tr-line"
+      ]
+    }
+  ]
+}

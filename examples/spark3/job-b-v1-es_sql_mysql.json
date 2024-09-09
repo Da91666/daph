@@ -1,0 +1,59 @@
+{
+  "options": {
+    "daph.home": "DAPH_HOME路径",
+    "daph.log-level": "info"
+  },
+  "nodes": [
+    {
+      "flag": "Spark3.dataframe.batch.connector.CommonInput",
+      "config": {
+        "cfg": {
+          "es.http.timeout": "30000ms",
+          "es.index.auto.create": "true",
+          "es.net.http.auth.pass": "nxRGFFR7AhOFk5d5r3Mm",
+          "es.net.http.auth.user": "elastic",
+          "es.net.ssl": "false",
+          "es.net.ssl.cert.allow.self.signed": "false",
+          "es.nodes": "192.168.3.201",
+          "es.nodes.wan.only": "true",
+          "es.port": "9200",
+          "es.resource": "dpark_mysql_user"
+        },
+        "format": "es"
+      },
+      "outLines": [
+        "in-line1"
+      ]
+    },
+    {
+      "flag": "Spark3.dataframe.general.transformer.Sql",
+      "config": {
+        "sql": "select ID,createtime,inventory,price,updatetime,username from t"
+      },
+      "inLines": [
+        "in-line1"
+      ],
+      "outLines": [
+        "sql-tr-line"
+      ]
+    },
+    {
+      "flag": "Spark3.dataframe.batch.connector.CommonOutput",
+      "config": {
+        "cfg": {
+          "dbtable": "dspark_es_user",
+          "driver": "com.mysql.cj.jdbc.Driver",
+          "duplicateIncs": "",
+          "password": "root",
+          "url": "jdbc:mysql://192.168.3.202:3306/bigdata?characterEncoding=UTF-8&useUnicode=true&useSSL=false&tinyInt1isBit=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai",
+          "user": "root"
+        },
+        "saveMode": "append",
+        "format": "jdbc"
+      },
+      "inLines": [
+        "sql-tr-line"
+      ]
+    }
+  ]
+}

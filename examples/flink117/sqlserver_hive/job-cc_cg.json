@@ -1,0 +1,51 @@
+{
+  "options": {
+    "daph.home": "DAPH_HOME路径",
+    "daph.log.level": "info"
+  },
+  "nodes": [
+    {
+      "flag": "Flink117.sql.general.connector.GaMultipleInput",
+      "config": {
+        "createConfigs": [
+          {
+            "daph.dbType": "sqlserver",
+            "daph.databaseName": "bidata",
+            "daph.schemaName": "dbo",
+            "daph.tableNames": "driver_action_time",
+            "connector": "jdbc",
+            "url": "jdbc:sqlserver://192.168.6.66:1433;databaseName=bidata",
+            "username": "sa",
+            "password": "daph"
+          }
+        ]
+      },
+      "outLines": [
+        "in-line"
+      ]
+    },
+    {
+      "flag": "Flink117.sql.general.connector.GaMultipleOutput",
+      "config": {
+        "catalogName": "hive_catalog",
+        "databaseName": "daph_sqlserver",
+        "catalogExtraConfig": {
+          "daph.dbType": "hive",
+          "daph.tableNamePrefix": "z_",
+          "daph.flink.saveMode": "append",
+          "daph.flink.dialect": "hive",
+          "daph.hive.format": "orc",
+          "bucketing_version": "2"
+        },
+        "insertConfigs": [
+          {
+            "sql": "insert into hive_catalog.daph_sqlserver.z_table_in select * from default_catalog.default_database.`dbo.driver_action_time`"
+          }
+        ]
+      },
+      "inLines": [
+        "in-line"
+      ]
+    }
+  ]
+}

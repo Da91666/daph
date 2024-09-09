@@ -1,0 +1,8 @@
+{
+  "envConfig": {
+    "spark.master": "local[*]",
+    "spark.app.name": "Spark Example",
+    "spark.sql.warehouse.dir": "warehouse",
+    "spark.ui.enabled": "false"
+  }
+}

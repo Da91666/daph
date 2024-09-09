@@ -1,0 +1,55 @@
+{
+  "options": {
+    "daph.home": "DAPH_HOME路径",
+    "daph.log-level": "info"
+  },
+  "nodes": [
+    {
+      "flag": "Spark3.dataframe.batch.connector.CommonInput",
+      "config": {
+        "cfg": {
+          "dbtable": "user",
+          "driver": "com.mysql.cj.jdbc.Driver",
+          "password": "root",
+          "url": "jdbc:mysql://192.168.3.202:3306/bigdata?characterEncoding=UTF-8&useUnicode=true&useSSL=false&tinyInt1isBit=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai",
+          "user": "root"
+        },
+        "format": "jdbc"
+      },
+      "outLines": [
+        "in-line1"
+      ]
+    },
+    {
+      "flag": "Spark3.dataframe.general.transformer.Sql",
+      "config": {
+        "sql": "select ID as id,createtime,cast (price as DOUBLE),inventory,username,updatetime from t"
+      },
+      "inLines": [
+        "in-line1"
+      ],
+      "outLines": [
+        "sql-tr-line"
+      ]
+    },
+    {
+      "flag": "Spark3.dataframe.batch.connector.CommonOutput",
+      "config": {
+        "cfg": {
+          "access.mode": "write",
+          "authentication.basic.password": "bigdata_root",
+          "authentication.basic.username": "neo4j",
+          "authentication.type": "basic",
+          "labels": "DSparkMysqlUser",
+          "url": "bolt://192.168.3.202:37687"
+        },
+        "format": "org.neo4j.spark.DataSource",
+        "saveMode": "append"
+      },
+      "inLines": [
+        "sql-tr-line"
+      ]
+    }
+  ]
+}
+  

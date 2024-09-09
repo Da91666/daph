@@ -1,0 +1,51 @@
+{
+  "options": {
+    "daph.home": "DAPH_HOME路径",
+    "daph.log.level": "info"
+  },
+  "nodes": [
+    {
+      "flag": "Flink117.sql.general.connector.GaMultipleInput",
+      "id": "in1",
+      "config": {
+        "createConfigs": [
+          {
+            "daph.dbType": "postgresql",
+            "daph.databaseName": "bigdata",
+            "connector": "jdbc",
+            "url": "jdbc:postgresql://192.168.6.66:5432/bigdata",
+            "username": "bigdata",
+            "password": "root",
+            "daph.schemaName": "public",
+            "daph.flink.enableEDB": "true",
+            "daph.flink.edbNumber": "1"
+          }
+        ]
+      },
+      "outLines": [
+        "in-line"
+      ]
+    },
+    {
+      "flag": "Flink117.sql.general.connector.GaMultipleOutput",
+      "config": {
+        "catalogName": "hive_catalog",
+        "databaseName": "daph_hive",
+        "enableCatalogEDB": true,
+        "catalogExtraConfig": {
+          "daph.dbType": "hive",
+          "daph.tableNamePrefix": "z_pg_hive_",
+          "daph.flink.edbInNodeId": "in1",
+          "daph.flink.edbNumber": "1",
+          "daph.flink.saveMode": "append",
+          "daph.flink.dialect": "hive",
+          "daph.hive.format": "parquet",
+          "bucketing_version": "2"
+        }
+      },
+      "inLines": [
+        "in-line"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "options": {
+    "daph.home": "DAPH_HOME路径",
+    "daph.log.level": "DEBUG"
+  },
+  "nodes": [
+    {
+      "flag": "Flink117.sql.general.connector.GaMultipleInput",
+      "config": {
+        "createConfigs": [
+          {
+            "daph.dbType": "postgresql",
+            "daph.url": "jdbc:postgresql://192.168.6.66:5432/bigdata",
+            "daph.databaseName": "bigdata",
+            "daph.tableNames": "test_user_1",
+            "daph.schemaName": "public",
+            "connector": "postgres-cdc",
+            "hostname": "192.168.6.66",
+            "schema-name": "public",
+            "port": "5432",
+            "username": "postgres",
+            "slot.name": "flink",
+            "decoding.plugin.name": "pgoutput",
+            "password": "postgres",
+            "database-name": "bigdata",
+            "scan.incremental.snapshot.enabled": "true"
+          }
+        ]
+      },
+      "outLines": [
+        "in-line"
+      ]
+    },
+    {
+      "flag": "Flink117.sql.general.connector.GaMultipleOutput",
+      "config": {
+        "createConfigs": [
+          {
+            "daph.dbType": "postgresql",
+            "daph.databaseName": "daph_flink_bigdata_test",
+            "daph.tableNames": "cdc_test_user_1",
+            "daph.schemaName": "public",
+            "daph.url": "jdbc:postgresql://192.168.6.66:5432/daph_flink_bigdata_test",
+            "daph.flink.saveMode": "append",
+            "connector": "jdbc",
+            "url": "jdbc:postgresql://192.168.6.66:5432/daph_flink_bigdata_test",
+            "username": "postgres",
+            "password": "postgres"
+          }
+        ],
+        "insertConfigs": [
+          {
+            "sql": "insert into `public.cdc_test_user_1` select * from `public.test_user_1`",
+            "primaryKeys": "id"
+          }
+        ]
+      },
+      "inLines": [
+        "in-line"
+      ]
+    }
+  ]
+}

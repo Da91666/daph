@@ -1,0 +1,53 @@
+{
+  "options": {
+    "daph.home": "DAPH_HOME路径",
+    "daph.log-level": "info"
+  },
+  "nodes": [
+    {
+      "flag": "Spark3.dataframe.batch.connector.CommonInput",
+      "config": {
+        "format": "jdbc",
+        "cfg": {
+          "url": "jdbc:mysql://192.168.3.202:3306/bigdata?characterEncoding=UTF-8&useUnicode=true&useSSL=false&tinyInt1isBit=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai",
+          "dbtable": "user",
+          "user": "root",
+          "password": "root",
+          "driver": "com.mysql.cj.jdbc.Driver"
+        }
+      },
+      "outLines": [
+        "in-line1"
+      ]
+    },
+    {
+      "flag": "Spark3.dataframe.general.transformer.Sql",
+      "config": {
+        "sql": "select ID as id,date_format(createtime, 'yyyy-MM-dd HH:mm:ss') as createtime,cast (price as STRING),cast (inventory as STRING),username,date_format(updatetime, 'yyyy-MM-dd HH:mm:ss') as updatetime  from t"
+      },
+      "inLines": [
+        "in-line1"
+      ],
+      "outLines": [
+        "sql-tr-line"
+      ]
+    },
+    {
+      "flag": "Spark3.dataframe.batch.connector.CommonOutput",
+      "config": {
+        "cfg": {
+          "encoding": "utf-8"
+        },
+        "format": "text",
+        "name": "/srv/data_universe/cluster_worker/data_center/dw/hbase_daph_hdfs_txt",
+        "saveMode": "append"
+      },
+      "inLines": [
+        "sql-tr-line"
+      ],
+      "extraOptions": {
+        "daph.spark.before.node.dataframe.querySQL": "select concat_ws('||',id,username,price,inventory,updatetime,createtime) as output from t"
+      }
+    }
+  ]
+}

@@ -1,0 +1,117 @@
+[
+  {
+    "sourceTypes": [
+      "CHAR",
+      "VARCHAR"
+    ],
+    "targetTypes": [
+      "VARCHAR(65535)"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "STRING"
+    ],
+    "targetTypes": [
+      "TEXT"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "SMALLINT"
+    ],
+    "targetTypes": [
+      "SMALLINT",
+      "INT2",
+      "SMALLSERIAL",
+      "SERIAL2"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "INT"
+    ],
+    "targetTypes": [
+      "INTEGER",
+      "INT4",
+      "SERIAL"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "BIGINT"
+    ],
+    "targetTypes": [
+      "BIGINT",
+      "INT8",
+      "BIGSERIAL"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "FLOAT"
+    ],
+    "targetTypes": [
+      "REAL",
+      "FLOAT4"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "DOUBLE"
+    ],
+    "targetTypes": [
+      "FLOAT8",
+      "DOUBLE PRECISION"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "DECIMAL"
+    ],
+    "targetTypes": [
+      "DECIMAL(38,38)",
+      "NUMERIC(38,38)"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "BOOLEAN"
+    ],
+    "targetTypes": [
+      "BOOLEAN"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "DATE"
+    ],
+    "targetTypes": [
+      "DATE"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "TIME"
+    ],
+    "targetTypes": [
+      "TIME"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "TIMESTAMP"
+    ],
+    "targetTypes": [
+      "TIMESTAMP"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "BYTES"
+    ],
+    "targetTypes": [
+      "BYTEA"
+    ]
+  }
+]

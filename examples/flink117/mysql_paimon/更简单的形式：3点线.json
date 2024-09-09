@@ -1,0 +1,48 @@
+{
+  "options": {
+    "daph.home": "DAPH_HOME路径",
+    "daph.computer.type": "flink117",
+    "daph.dag.model": "three-point-line",
+    "daph.log.level": "debug"
+  },
+  "nodes": [
+    {
+      "flag": "source",
+      "config": {
+        "catalogName": "mysql_catalog1",
+        "databaseName": "daph"
+      }
+    },
+    {
+      "flag": "tr",
+      "config": {
+        "queryConfigs": [
+          {
+            "results": [
+              {
+                "resultTable": "tmp_t1",
+                "sql": "select * from mysql_catalog1.daph.in_t1"
+              },
+              {
+                "resultTable": "tmp_t2",
+                "sql": "select * from mysql_catalog1.daph.in_t2"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "flag": "sink",
+      "config": {
+        "catalogName": "mysql_catalog3",
+        "databaseName": "daph",
+        "insertConfigs": [
+          {
+            "sql": "insert into out_t7 select a.id, b.name from default_catalog.default_database.tmp_t1 a join default_catalog.default_database.tmp_t2 b on a.id=b.id"
+          }
+        ]
+      }
+    }
+  ]
+}

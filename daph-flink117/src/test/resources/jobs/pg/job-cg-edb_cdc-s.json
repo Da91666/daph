@@ -1,0 +1,41 @@
+{
+  "options": {
+    "daph.computer.type": "flink117",
+    "daph.dag.model": "two-point-line",
+    "daph.log.level": "info"
+  },
+  "nodes": [
+    {
+      "flag": "input",
+      "config": {
+        "catalogName": "pg_catalog",
+        "databaseName": "daph",
+        "enableCatalogEDB": true,
+        "enableCatalogCDC": true,
+        "catalogExtraConfig": {
+          "daph.schemaName": "wa",
+          "daph.flink.onlyPrimaryTables": "true",
+          "scan.startup.mode": "initial",
+          "slot.name": "flink3",
+          "decoding.plugin.name": "pgoutput",
+          "scan.incremental.snapshot.enabled": "true"
+        }
+      }
+    },
+    {
+      "flag": "output",
+      "config": {
+        "catalogName": "pg_catalog",
+        "databaseName": "daph",
+        "enableCatalogEDB": true,
+        "catalogExtraConfig": {
+          "daph.schemaName": "public",
+          "daph.tableNamePrefix": "z_cg_cdc_",
+          "daph.tableNameSuffix": "_all",
+          "daph.flink.saveMode": "append",
+          "sink.max-retries": "1"
+        }
+      }
+    }
+  ]
+}

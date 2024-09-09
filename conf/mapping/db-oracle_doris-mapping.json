@@ -1,0 +1,76 @@
+[
+  {
+    "sourceTypes": [
+      "VARCHAR2",
+      "VARCHAR",
+      "CHAR",
+      "NCHAR",
+      "NVARCHAR"
+    ],
+    "targetTypes": [
+      "VARCHAR(16383)"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "CLOB"
+    ],
+    "targetTypes": [
+      "STRING",
+      "LARGEINT",
+      "JSON"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "BINARY_FLOAT"
+    ],
+    "targetTypes": [
+      "FLOAT"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "BINARY_DOUBLE"
+    ],
+    "targetTypes": [
+      "DOUBLE"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "NUMBER"
+    ],
+    "targetTypes": [
+      "DECIMALV3(38,38)",
+      "DECIMALV2(27,9)",
+      "DECIMAL(38,38)"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "DATE"
+    ],
+    "targetTypes": [
+      "DATEV2",
+      "DATE"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "TIMESTAMP"
+    ],
+    "targetTypes": [
+      "DATETIME"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "RAW",
+      "BLOB"
+    ],
+    "targetTypes": [
+      ""
+    ]
+  }
+]

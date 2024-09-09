@@ -1,0 +1,123 @@
+[
+  {
+    "sourceTypes": [
+      "BOOLEAN"
+    ],
+    "targetTypes": [
+      "BOOLEAN"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "STRUCT"
+    ],
+    "targetTypes": [
+      "ROW"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "LIST"
+    ],
+    "targetTypes": [
+      "ARRAY"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "MAP"
+    ],
+    "targetTypes": [
+      "MAP"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "INTEGER"
+    ],
+    "targetTypes": [
+      "INTEGER"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "LONG"
+    ],
+    "targetTypes": [
+      "BIGINT"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "FLOAT"
+    ],
+    "targetTypes": [
+      "FLOAT"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "DOUBLE"
+    ],
+    "targetTypes": [
+      "DOUBLE"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "DATE"
+    ],
+    "targetTypes": [
+      "DATE"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "TIME"
+    ],
+    "targetTypes": [
+      "TIME"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "TIMESTAMP"
+    ],
+    "targetTypes": [
+      "TIMESTAMP"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "STRING"
+    ],
+    "targetTypes": [
+      "STRING"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "UUID",
+      "FIXED"
+    ],
+    "targetTypes": [
+      "BINARY"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "BINARY"
+    ],
+    "targetTypes": [
+      "VARBINARY"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "DECIMAL"
+    ],
+    "targetTypes": [
+      "DECIMAL"
+    ]
+  }
+]

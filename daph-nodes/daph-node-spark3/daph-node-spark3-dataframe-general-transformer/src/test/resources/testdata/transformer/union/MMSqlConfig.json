@@ -1,0 +1,29 @@
+{
+  "flag": "Spark3.dataframe.general.transformer.MMSql",
+  "name": "abc",
+  "config": {
+    "sql": "select a.*,b.* from a left join b on a.id=b.id",
+    "lineIdToTableName": {
+      "ds1": "a",
+      "ds2": "b"
+    },
+    "dataIdToSql": {
+      "sql1": "select a.*,b.* from a left join b on a.id=b.id",
+      "sql2": "select a.s1,a.s2,sum(a.s3) from a group by a.s1,a.s2"
+    },
+    "dataIdToOutLineId": {
+      "sql1": "out1",
+      "sql2": "out2"
+    }
+  },
+  "inLines": [
+    "ds1",
+    "ds2"
+  ],
+  "outLines": [
+    "out1",
+    "out2"
+  ],
+  "extraOptions": {
+  }
+}

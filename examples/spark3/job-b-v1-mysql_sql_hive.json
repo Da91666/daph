@@ -1,0 +1,63 @@
+{
+  "options": {
+    "daph.home": "DAPH_HOME路径",
+    "daph.log-level": "info"
+  },
+  "nodes": [
+    {
+      "flag": "Spark3.dataframe.batch.connector.CommonInput",
+      "config": {
+        "cfg": {
+          "dbtable": "user",
+          "driver": "com.mysql.cj.jdbc.Driver",
+          "password": "root",
+          "url": "jdbc:mysql://192.168.3.202:3306/bigdata?characterEncoding=UTF-8&useUnicode=true&useSSL=false&tinyInt1isBit=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai",
+          "user": "root"
+        },
+        "format": "jdbc"
+      },
+      "outLines": [
+        "in-line1"
+      ],
+      "extraOptions": {
+        "daph.spark.after.node.dataframe.querySQL": "select * from t"
+      }
+    },
+    {
+      "flag": "Spark3.dataframe.general.transformer.Sql",
+      "config": {
+        "sql": "select * from t"
+      },
+      "inLines": [
+        "in-line1"
+      ],
+      "outLines": [
+        "sql-tr-line"
+      ],
+      "extraOptions": {
+        "daph.spark.before.node.dataframe.querySQL": "select * from t",
+        "daph.spark.after.node.dataframe.querySQL": "select * from t"
+      }
+    },
+    {
+      "flag": "Spark3.dataframe.batch.connector.CommonOutput",
+      "config": {
+        "columnNames": [
+          "f1",
+          "f2",
+          "f3"
+        ],
+        "format": "hive",
+        "saveMode": "overwrite",
+        "method": "saveAsTable",
+        "name": "dw.dspark_mysql_user"
+      },
+      "inLines": [
+        "sql-tr-line"
+      ],
+      "extraOptions": {
+        "daph.spark.before.node.dataframe.querySQL": "select * from t"
+      }
+    }
+  ]
+}

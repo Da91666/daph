@@ -1,0 +1,18 @@
+{
+  "flag": "Spark3.dataframe.general.transformer.union",
+  "name": "abc",
+  "config": {
+    "unionType": "POSITION"
+  },
+  "inLines": [
+    "ds1",
+    "ds2",
+    "ds3"
+  ],
+  "outLines": [
+    "out1"
+  ],
+  "extraOptions": {
+
+  }
+}

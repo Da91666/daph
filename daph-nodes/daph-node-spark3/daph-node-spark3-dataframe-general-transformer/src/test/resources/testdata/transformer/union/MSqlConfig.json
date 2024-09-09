@@ -1,0 +1,20 @@
+{
+  "flag": "Spark3.dataframe.general.transformer.MSql",
+  "name": "abc",
+  "config": {
+    "sql": "select a.*,b.* from a left join b on a.id=b.id",
+    "lineIdToTableName": {
+      "ds1": "a",
+      "ds2": "b"
+    }
+  },
+  "inLines": [
+    "ds1",
+    "ds2"
+  ],
+  "outLines": [
+    "out1"
+  ],
+  "extraOptions": {
+  }
+}

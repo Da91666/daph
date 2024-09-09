@@ -1,0 +1,51 @@
+{
+  "options": {
+    "daph.home": "DAPH_HOME路径",
+    "daph.log-level": "info"
+  },
+  "nodes": [
+    {
+      "flag": "Spark3.dataframe.batch.connector.CommonInput",
+      "config": {
+        "cfg": {
+          "dbtable": "user",
+          "driver": "com.mysql.cj.jdbc.Driver",
+          "password": "root",
+          "url": "jdbc:mysql://192.168.3.202:3306/bigdata?characterEncoding=UTF-8&useUnicode=true&useSSL=false&tinyInt1isBit=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai",
+          "user": "root"
+        },
+        "format": "jdbc"
+      },
+      "outLines": [
+        "in-line1"
+      ]
+    },
+    {
+      "flag": "Spark3.dataframe.general.transformer.Sql",
+      "config": {
+        "sql": "select id as key,concat_ws('|',id,username,updatetime,createtime,price,inventory) as value from t"
+      },
+      "inLines": [
+        "in-line1"
+      ],
+      "outLines": [
+        "sql-tr-line"
+      ]
+    },
+    {
+      "flag": "Spark3.dataframe.batch.connector.CommonOutput",
+      "config": {
+        "cfg": {
+          "checkpointLocation": "/srv/data_universe/cluster_worker/kafka_streaming/dspark_mysql_user",
+          "kafka.bootstrap.servers": "ddp1:9092,ddp2:9092,ddp3:9092",
+          "topic": "dspark_mysql_user"
+        },
+        "format": "kafka",
+        "method": "start"
+      },
+      "inLines": [
+        "sql-tr-line"
+      ]
+    }
+  ]
+}

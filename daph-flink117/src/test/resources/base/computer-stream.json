@@ -1,0 +1,48 @@
+{
+  "envConfig": {
+    "table.sql-dialect": "default",
+    "execution.runtime-mode": "STREAMING",
+    "table.exec.source.cdc-events-duplicate": "false",
+    "execution.checkpointing.mode": "EXACTLY_ONCE",
+    "execution.checkpointing.interval": "10 s"
+  },
+  "catalogConfigs": [
+    {
+      "enabled": "true",
+      "type": "jdbc",
+      "name": "mysql_catalog",
+      "default-database": "daph",
+      "username": "root",
+      "password": "fffff",
+      "base-url": "jdbc:mysql://localhost:3306"
+    },
+    {
+      "enabled": "true",
+      "type": "jdbc",
+      "name": "pg_catalog",
+      "default-database": "daph",
+      "username": "postgres",
+      "password": "fffff",
+      "base-url": "jdbc:postgresql://localhost:5432"
+    },
+    {
+      "enabled": "false",
+      "type": "hive",
+      "name": "hive_catalog",
+      "default-database": "default",
+      "hive-conf-dir": "E:/Cache/daph/conf"
+    },
+    {
+      "enabled": "false",
+      "type": "iceberg",
+      "name": "iceberg_catalog",
+      "catalog-type": "hive",
+      "uri": "thrift://ddp2:9083",
+      "clients": "5",
+      "property-version": "1",
+      "warehouse": "hdfs://ddp3:8020/user/hive/warehouse",
+      "cache-enabled": "true",
+      "cache.expiration-interval-ms": "5000"
+    }
+  ]
+}

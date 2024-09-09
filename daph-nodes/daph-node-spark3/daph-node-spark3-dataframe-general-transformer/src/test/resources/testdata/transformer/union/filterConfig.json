@@ -1,0 +1,22 @@
+{
+  "flag": "Spark3.dataframe.general.transformer.flatMap",
+  "name": "abc",
+  "config": {
+    "conditions":[
+      {
+        "expression": "id=1",
+        "isNot": "false"
+      }
+    ]
+  },
+  "inLines": [
+    "ds1"
+  ],
+  "outLines": [
+    "out1"
+  ],
+  "extraOptions": {
+    "beforeSQL": "select * from t limit 3",
+    "afterSQL": "select * from t limit 3"
+  }
+}

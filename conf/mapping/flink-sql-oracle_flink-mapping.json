@@ -1,0 +1,67 @@
+[
+  {
+    "sourceTypes": [
+      "VARCHAR",
+      "VARCHAR2",
+      "CHAR",
+      "NCHAR",
+      "NVARCHAR",
+      "NVARCHAR2"
+    ],
+    "targetTypes": [
+      "VARCHAR"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "CLOB",
+      "NCLOB"
+    ],
+    "targetTypes": [
+      "STRING"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "BINARY_FLOAT"
+    ],
+    "targetTypes": [
+      "FLOAT"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "FLOAT",
+      "BINARY_DOUBLE"
+    ],
+    "targetTypes": [
+      "DOUBLE"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "NUMBER"
+    ],
+    "targetTypes": [
+      "DECIMAL"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "DATE",
+      "TIMESTAMP"
+    ],
+    "targetTypes": [
+      "TIMESTAMP"
+    ]
+  },
+  {
+    "sourceTypes": [
+      "RAW",
+      "BLOB"
+    ],
+    "targetTypes": [
+      "BYTES"
+    ]
+  }
+]

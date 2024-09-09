@@ -1,0 +1,140 @@
+[
+  {
+    "flag": "JVM.httpresult.simple.connector.HttpInput",
+    "jarName": "daph-node-jvm-httpresult.jar",
+    "className": "com.dasea.daph.node.jvm.httpresult.simple.connector.HttpInput",
+    "classPrefix": "com.dasea.daph.node.jvm.httpresult"
+  },
+  {
+    "flag": "JVM.httpresult.simple.transformer.HttpTransformer",
+    "jarName": "daph-node-jvm-httpresult.jar",
+    "className": "com.dasea.daph.node.jvm.httpresult.simple.transformer.HttpTransformer",
+    "classPrefix": "com.dasea.daph.node.jvm.httpresult"
+  },
+  {
+    "flag": "JVM.httpresult.simple.connector.HttpOutput",
+    "jarName": "daph-node-jvm-httpresult.jar",
+    "className": "com.dasea.daph.node.jvm.httpresult.simple.connector.HttpOutput",
+    "classPrefix": "com.dasea.daph.node.jvm.httpresult"
+  },
+  {
+    "flag": "Flink117.sql.general.connector.GaMultipleInput",
+    "jarName": "daph-node-flink117-sql-general.jar",
+    "className": "com.dasea.daph.node.flink117.sql.general.connector.GaMultipleInput",
+    "classPrefix": "com.dasea.daph.node.flink117.sql.general"
+  },
+  {
+    "flag": "Flink117.sql.general.connector.GaMultipleOutput",
+    "jarName": "daph-node-flink117-sql-general.jar",
+    "className": "com.dasea.daph.node.flink117.sql.general.connector.GaMultipleOutput",
+    "classPrefix": "com.dasea.daph.node.flink117.sql.general"
+  },
+  {
+    "flag": "Flink117.sql.general.transformer.GaMMSQL",
+    "jarName": "daph-node-flink117-sql-general.jar",
+    "className": "com.dasea.daph.node.flink117.sql.general.transformer.GaMMSQL",
+    "classPrefix": "com.dasea.daph.node.flink117.sql.general"
+  },
+  {
+    "flag": "Spark3.dataframe.batch.connector.CommonInput",
+    "jarName": "daph-node-spark3-dataframe-connector-commonio.jar",
+    "className": "com.dasea.daph.node.spark3.dataframe.batch.connector.common.CommonInput",
+    "classPrefix": "com.dasea.daph.node.spark3.dataframe"
+  },
+  {
+    "flag": "Spark3.dataframe.batch.connector.CommonOutput",
+    "jarName": "daph-node-spark3-dataframe-connector-commonio.jar",
+    "className": "com.dasea.daph.node.spark3.dataframe.batch.connector.common.CommonOutput",
+    "classPrefix": "com.dasea.daph.node.spark3.dataframe"
+  },
+  {
+    "flag": "Spark3.dataframe.stream.connector.CommonInput",
+    "jarName": "daph-node-spark3-dataframe-connector-commonio.jar",
+    "className": "com.dasea.daph.node.spark3.dataframe.stream.connector.common.CommonInput",
+    "classPrefix": "com.dasea.daph.node.spark3.dataframe"
+  },
+  {
+    "flag": "Spark3.dataframe.stream.connector.CommonOutput",
+    "jarName": "daph-node-spark3-dataframe-connector-commonio.jar",
+    "className": "com.dasea.daph.node.spark3.dataframe.stream.connector.common.CommonOutput",
+    "classPrefix": "com.dasea.daph.node.spark3.dataframe"
+  },
+  {
+    "flag": "Spark3.dataframe.batch.connector.ESOutput",
+    "jarName": "daph-node-spark3-dataframe-batch-connector-es.jar",
+    "className": "com.dasea.daph.node.spark3.dataframe.batch.connector.es.ESOutput",
+    "classPrefix": "com.dasea.daph.node.spark3.dataframe.batch.connector.es;org.elasticsearch"
+  },
+  {
+    "flag": "Spark3.dataframe.batch.connector.HiveInput",
+    "jarName": "daph-node-spark3-dataframe-batch-connector-hive.jar",
+    "className": "com.dasea.daph.node.spark3.dataframe.batch.connector.hive.HiveInput"
+  },
+  {
+    "flag": "Spark3.dataframe.batch.connector.HttpInput",
+    "jarName": "daph-node-spark3-dataframe-batch-connector-http.jar",
+    "className": "com.dasea.daph.node.spark3.dataframe.batch.connector.http.HttpInput"
+  },
+  {
+    "flag": "Spark3.dataframe.batch.connector.KPOutput",
+    "jarName": "daph-node-spark3-dataframe--connector-kp.jar",
+    "className": "com.dasea.daph.node.spark3.dataframe.batch.connector.kp.KPOutput",
+    "classPrefix": "com.dasea.daph.node.spark3.dataframe"
+  },
+  {
+    "flag": "Spark3.dataframe.stream.connector.KPOutput",
+    "jarName": "daph-node-spark3-dataframe-connector-kp.jar",
+    "className": "com.dasea.daph.node.spark3.dataframe.stream.connector.kp.KPOutput",
+    "classPrefix": "com.dasea.daph.node.spark3.dataframe"
+  },
+  {
+    "flag": "Spark3.dataframe.general.transformer.Sql",
+    "jarName": "daph-node-spark3-dataframe-general-transformer.jar",
+    "className": "com.dasea.daph.node.spark3.dataframe.general.transformer.sql.Sql"
+  },
+  {
+    "flag": "Spark3.dataframe.general.transformer.MSql",
+    "jarName": "daph-node-spark3-dataframe-general-transformer.jar",
+    "className": "com.dasea.daph.node.spark3.dataframe.general.transformer.sql.MSql"
+  },
+  {
+    "flag": "Spark3.dataframe.general.transformer.MMSql",
+    "jarName": "daph-node-spark3-dataframe-general-transformer.jar",
+    "className": "com.dasea.daph.node.spark3.dataframe.general.transformer.sql.MMSql"
+  },
+  {
+    "flag": "Spark3.dataframe.general.transformer.Map",
+    "jarName": "daph-node-spark3-dataframe-general-transformer.jar",
+    "className": "com.dasea.daph.node.spark3.dataframe.general.transformer.map.Map"
+  },
+  {
+    "flag": "Spark3.dataframe.general.transformer.Filter",
+    "jarName": "daph-node-spark3-dataframe-general-transformer.jar",
+    "className": "com.dasea.daph.node.spark3.dataframe.general.transformer.filter.Filter"
+  },
+  {
+    "flag": "Spark3.dataframe.general.transformer.Join",
+    "jarName": "daph-node-spark3-dataframe-general-transformer.jar",
+    "className": "com.dasea.daph.node.spark3.dataframe.general.transformer.join.Join"
+  },
+  {
+    "flag": "Spark3.dataframe.general.transformer.Union",
+    "jarName": "daph-node-spark3-dataframe-general-transformer.jar",
+    "className": "com.dasea.daph.node.spark3.dataframe.general.transformer.union.Union"
+  },
+  {
+    "flag": "Spark3.dataframe.general.transformer.Union",
+    "jarName": "daph-node-spark3-dataframe-general-transformer.jar",
+    "className": "com.dasea.daph.node.spark3.dataframe.general.transformer.union.Union"
+  },
+  {
+    "flag": "Spark3.dataframe.general.transformer.GroupByKey",
+    "jarName": "daph-node-spark3-dataframe-general-transformer.jar",
+    "className": "com.dasea.daph.node.spark3.dataframe.general.transformer.groupbykey.GroupByKey"
+  },
+  {
+    "flag": "Spark3.dataframe.general.transformer.Flatmap",
+    "jarName": "daph-node-spark3-dataframe-general-transformer.jar",
+    "className": "com.dasea.daph.node.spark3.dataframe.general.transformer.flatMap.FlatMap"
+  }
+]

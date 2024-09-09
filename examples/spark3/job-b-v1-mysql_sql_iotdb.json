@@ -1,0 +1,51 @@
+{
+  "options": {
+    "daph.home": "DAPH_HOME路径",
+    "daph.log-level": "info"
+  },
+  "nodes": [
+    {
+      "flag": "Spark3.dataframe.batch.connector.CommonInput",
+      "config": {
+        "format": "jdbc",
+        "cfg": {
+          "url": "jdbc:mysql://192.168.3.202:3306/bigdata?characterEncoding=UTF-8&useUnicode=true&useSSL=false&tinyInt1isBit=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai",
+          "dbtable": "device_meta_data",
+          "user": "root",
+          "password": "root",
+          "driver": "com.mysql.cj.jdbc.Driver"
+        }
+      },
+      "outLines": [
+        "in-line1"
+      ]
+    },
+    {
+      "flag": "Spark3.dataframe.general.transformer.Sql",
+      "config": {
+        "sql": "select cast (timestamp as LONG) as Time, CONCAT('root.bigdata.dspark_mysql_device',device_name) as Device,humidity,pressure,temperature,location  from t"
+      },
+      "inLines": [
+        "in-line1"
+      ],
+      "outLines": [
+        "sql-tr-line"
+      ]
+    },
+    {
+      "flag": "Spark3.dataframe.batch.connector.CommonOutput",
+      "config": {
+        "cfg": {
+          "user": "root",
+          "password": "root",
+          "url": "jdbc:iotdb://192.168.3.202:6667/"
+        },
+        "format": "org.apache.iotdb.spark.db",
+        "saveModel": "append"
+      },
+      "inLines": [
+        "sql-tr-line"
+      ]
+    }
+  ]
+}

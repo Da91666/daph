@@ -1,0 +1,99 @@
+{
+  "options": {
+    "daph.home": "DAPH_HOME路径",
+    "daph.log-level": "info"
+  },
+  "nodes": [
+    {
+      "name": "input",
+      "flag": "Spark3.dataframe.batch.connector.CommonInput",
+      "config": {
+        "cfg": {
+          "dbtable": "user",
+          "driver": "com.mysql.cj.jdbc.Driver",
+          "password": "root",
+          "url": "jdbc:mysql://192.168.3.202:3306/bigdata?characterEncoding=UTF-8&useUnicode=true&useSSL=false&tinyInt1isBit=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai",
+          "user": "root"
+        },
+        "format": "jdbc"
+      },
+      "outLines": [
+        "in-line1"
+      ]
+    },
+    {
+      "name": "input2",
+      "flag": "Spark3.dataframe.batch.connector.CommonInput",
+      "config": {
+        "cfg": {
+          "dbtable": "FAMILY.\"USER_INFO\"",
+          "driver": "oracle.jdbc.driver.OracleDriver",
+          "password": "zyhcdc",
+          "url": "jdbc:oracle:thin:@192.168.3.202:1521/helowin",
+          "user": "family"
+        },
+        "format": "jdbc"
+      },
+      "outLines": [
+        "in-line2"
+      ]
+    },
+    {
+      "name": "join",
+      "flag": "Spark3.dataframe.general.transformer.Join",
+      "config": {
+        "joinType": "left",
+        "leftLine": "in-line1",
+        "rightLine": "in-line2",
+        "joinColumns": [
+          {
+            "left": "ID",
+            "right": "ID"
+          }
+        ],
+        "outputColumns": [
+          {
+            "in": "ID",
+            "name": "ID",
+            "line": "left"
+          },
+          {
+            "in": "username",
+            "name": "USER",
+            "line": "left"
+          },
+          {
+            "in": "EMAIL",
+            "name": "EMAIL",
+            "line": "right"
+          },
+          {
+            "in": "ACCOUNT",
+            "name": "ACCOUNT",
+            "line": "right"
+          }
+        ]
+      },
+      "inLines": [
+        "in-line1",
+        "in-line2"
+      ],
+      "outLines": [
+        "sql-tr-line-1"
+      ]
+    },
+    {
+      "name": "output",
+      "flag": "Spark3.dataframe.batch.connector.CommonOutput",
+      "config": {
+        "format": "hive",
+        "saveMode": "overwrite",
+        "method": "saveAsTable",
+        "name": "dw.dspark_mysql_user_transformer_join"
+      },
+      "inLines": [
+        "sql-tr-line-1"
+      ]
+    }
+  ]
+}

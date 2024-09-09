@@ -1,0 +1,41 @@
+{
+  "options": {
+    "daph.home": "DAPH_HOME路径",
+    "daph.log-level": "info"
+  },
+  "nodes": [
+    {
+      "flag": "Spark3.dataframe.batch.connector.CommonInput",
+      "config": {
+        "cfg": {
+          "dbtable": "user",
+          "driver": "com.mysql.cj.jdbc.Driver",
+          "password": "root",
+          "url": "jdbc:mysql://192.168.3.202:3306/bigdata?characterEncoding=UTF-8&useUnicode=true&useSSL=false&tinyInt1isBit=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai",
+          "user": "root"
+        },
+        "format": "jdbc"
+      },
+      "outLines": [
+        "in_t1"
+      ],
+      "extraOptions": {
+        "daph.spark.after.node.dataframe.querySQL": "select * from t"
+      }
+    },
+    {
+      "flag": "Spark3.dataframe.batch.connector.CommonOutput",
+      "config": {
+        "v2": "true",
+        "v2Config": {
+          "tableName": "hive_catalog.iceberg_db.dspark_mysql_user",
+          "method": "createOrReplace"
+        },
+        "format": "org.apache.iceberg.spark.source.IcebergSource"
+      },
+      "inLines": [
+        "in_t1"
+      ]
+    }
+  ]
+}

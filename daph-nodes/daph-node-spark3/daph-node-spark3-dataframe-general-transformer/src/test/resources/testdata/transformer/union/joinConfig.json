@@ -1,0 +1,38 @@
+{
+  "flag": "Spark3.dataframe.general.transformer.Join",
+  "name": "abc",
+  "config": {
+    "joinType": "left",
+    "leftLine": "ds1",
+    "rightLine": "ds1",
+    "joinColumns": [
+      {
+        "left": "",
+        "right": ""
+      }
+    ],
+    "outputColumns": [
+      {
+        "in": "s1",
+        "name": "s1",
+        "LaneSelector": "left"
+      },
+      {
+        "in": "s2",
+        "name": "s2",
+        "LaneSelector": "right"
+      }
+    ]
+  },
+  "inLines": [
+    "ds1",
+    "ds2"
+  ],
+  "outLines": [
+    "out1"
+  ],
+  "extraOptions": {
+    "beforeSQL": "select * from t limit 3",
+    "afterSQL": "select * from t limit 3"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "options": {
+    "daph.home": "DAPH_HOME路径",
+    "daph.computer.type": "flink117",
+    "daph.dag.model": "two-point-line",
+    "daph.log.level": "debug"
+  },
+  "nodes": [
+    {
+      "flag": "source",
+      "config": {
+        "createConfigs": [
+          {
+            "daph.databaseName": "daph",
+            "daph.flink.enableEDB": "true",
+            "connector": "doris",
+            "fenodes": "192.168.3.202:8030",
+            "jdbc-url": "jdbc:mysql://192.168.3.202:9030/daph?useSSL=false",
+            "username": "root",
+            "password": ""
+          }
+        ]
+      }
+    },
+    {
+      "flag": "sink",
+      "config": {
+        "catalogName": "hive_catalog",
+        "databaseName": "flink_db",
+        "enableCatalogEDB": true,
+        "catalogExtraConfig": {
+          "daph.flink.edbInNodeId": "自动填写",
+          "daph.flink.dialect": "hive",
+          "daph.hive.format": "TextFile"
+        }
+      }
+    }
+  ]
+}

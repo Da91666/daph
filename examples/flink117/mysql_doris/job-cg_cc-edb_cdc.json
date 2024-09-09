@@ -1,0 +1,54 @@
+{
+  "options": {
+    "daph.home": "DAPH_HOME路径",
+    "daph.log.level": "info"
+  },
+  "nodes": [
+    {
+      "flag": "Flink117.sql.general.connector.GaMultipleInput",
+      "id": "in1",
+      "config": {
+        "catalogName": "mysql_catalog",
+        "databaseName": "daph",
+        "enableCatalogEDB": true,
+        "enableCatalogCDC": true,
+        "catalogExtraConfig": {
+          "scan.incremental.snapshot.enabled": "false"
+        }
+      },
+      "outLines": [
+        "in-line"
+      ]
+    },
+    {
+      "flag": "Flink117.sql.general.connector.GaMultipleOutput",
+      "config": {
+        "createConfigs": [
+          {
+            "daph.dbType": "doris",
+            "daph.url": "jdbc:mysql://192.168.6.66:9030/daph?useSSL=false",
+            "daph.databaseName": "daph",
+            "daph.flink.enableEDB": "true",
+            "daph.flink.edbInNodeId": "in1",
+            "daph.tableNamePrefix": "mysql_cdc_",
+            "daph.flink.saveMode": "append",
+            "daph.doris.engineType": "olap",
+            "daph.doris.labelType": "uuid",
+            "daph.doris.keyType": "UNIQUE",
+            "daph.doris.distType": "HASH",
+            "daph.doris.buckets": "12",
+            "daph.doris.props.replication_num": "1",
+            "connector": "doris",
+            "fenodes": "192.168.6.66:8030",
+            "jdbc-url": "jdbc:mysql://192.168.6.66:9030/daph?useSSL=false",
+            "username": "root",
+            "password": ""
+          }
+        ]
+      },
+      "inLines": [
+        "in-line"
+      ]
+    }
+  ]
+}

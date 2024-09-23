@@ -41,6 +41,6 @@
 
 ## 节点矩阵
 
-- **daph-jvm**：见[Daph-jvm节点手册](nodes/jvm/Daph-jvm节点手册.md)
-- **daph-flink117**：见[Daph-flink117节点手册](nodes/flink117/Daph-flink117节点手册.md)
-- **daph-spark3**：见[Daph-spark3节点手册](nodes/spark3/Daph-spark3节点手册.md)
+- **daph-jvm**：见[Daph-jvm节点手册](../使用手册/nodes/jvm/Daph-jvm节点手册.md)
+- **daph-flink117**：见[Daph-flink117节点手册](../使用手册/nodes/flink117/Daph-flink117节点手册.md)
+- **daph-spark3**：见[Daph-spark3节点手册](../使用手册/nodes/spark3/Daph-spark3节点手册.md)
